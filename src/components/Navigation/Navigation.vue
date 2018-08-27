@@ -8,10 +8,12 @@
 
 	export default {
 		name: 'navigation',
+		props: ['user'],
 		components: {
 			FixedHeader,
 		},
 		data: () => ({
+			blockstack: window.blockstack,
 			isFixed: false,
 			showMenu: false,
 			threshold: {
@@ -20,6 +22,13 @@
 				required: false
 			}
 		}),
+		mounted () {
+			this.$nextTick(() => {
+				console.log(this.user.avatarUrl())
+				console.log(this.user.name())
+				console.log(this.user.username)
+			});
+		},
 		methods: {
 			toggleMenu() {
 				this.showMenu = !this.showMenu;
@@ -33,6 +42,9 @@
 					el.classList.remove('hide-scroll', 'menu-open');
 				}
 			},
+			signOut () {
+				this.blockstack.signUserOut(window.location.origin)
+			}
 		}
 	}
 
@@ -63,10 +75,27 @@
 								Contact
 							</router-link>
 						</li>
-						<li>
-							<router-link class='whitepaper' to='/whitepaper' @click.native='toggleMenu()'>
-								Whitepaper
-							</router-link>
+						<li class='blank'></li>
+						<li class='user' v-if='user !== null'>
+							<div class='avatar'>
+								<img :src="user.avatarUrl() ? user.avatarUrl() : '/avatar-placeholder.png'" class='avatar'>
+							</div>
+							<div class='user-details'>
+								<div class='name'>
+									{{
+										user.name() ? user.name() : 'Nameless Person'
+									}}
+								</div>
+								<div class='username'>
+									{{
+										user.username ? user.username : user.identityAddress
+									}}
+								</div>
+							</div>
+							<div class='blank'></div>
+							<div class='signout'>
+								<svgicon name='icon/signout' class='icon' :original='true' @click.native='signOut()'></svgicon>
+							</div>
 						</li>
 					</ul>
 				</transition>
@@ -88,10 +117,25 @@
 					</li>
 					<li class='blank'></li>
 					</li>
-					<li>
-						<router-link to='/upload' :class='{ button: true, large: true, blue: true }'>
-							Upload
-						</router-link>
+					<li class='user' v-if='user !== null'>
+						<div class='user-details'>
+							<div class='name'>
+								{{
+									user.name() ? user.name() : 'Nameless Person'
+								}}
+							</div>
+							<div class='username'>
+								{{
+									user.username ? user.username : user.identityAddress
+								}}
+							</div>
+						</div>
+						<div class='avatar'>
+							<img :src="user.avatarUrl() ? user.avatarUrl() : '/avatar-placeholder.png'" class='avatar'>
+						</div>
+						<div class='signout'>
+							<svgicon name='icon/signout' class='icon' :original='true' @click.native='signOut()'></svgicon>
+						</div>
 					</li>
 				</ul>
 			</div>
