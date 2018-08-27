@@ -1,0 +1,168 @@
+@import '~include-media';
+
+%hover,
+%focus {
+	outline: 0;
+	border-bottom: 2px solid $black;
+	color: $dark-gray;
+}
+
+%hover {
+	&::-webkit-input-placeholder {
+		opacity: 1;
+	}
+}
+
+%input {
+	$color: $gray;
+	height: 50px;
+	border: none;
+	border-bottom: 2px solid $dark-white;
+	color: $color;
+	padding: 6px 20px; // the 6px vertically centers text on ff, ignored by webkit
+	transition: all $duration $bezier;
+	border-radius: 0;
+	background: $white;
+	min-width: 200px;
+	&::-webkit-input-placeholder {
+		transition: all $duration $bezier;
+		color: $color;
+		opacity: .5;
+	}
+	&.filled {
+		@extend %focus;
+	}
+	&:hover {
+		@extend %hover;
+	}
+	&.round {
+		color: $light-gray;
+		// background: none;
+		// box-shadow: none;
+		// padding: 0 10px 0 10px;
+		// color: $black;
+		background: $white;
+		border-radius: $border-radius;
+		box-shadow: $shadow-default;
+		border: none;
+		&:hover {
+			color: $dark-gray;
+			border: none;
+		}
+		// > .icon {
+		// 	margin-right: 10px;
+		// }
+		// &.green {
+		// 	color: $green;
+		// 	@include button-icon-color($green);
+		// }
+		// &.blue {
+		// 	color: $blue;
+		// 	@include button-icon-color($blue);
+		// }
+	}
+}
+
+textarea,
+select {
+	@extend %input;
+	&:focus {
+		@extend %focus;
+	}
+}
+
+// removes awkward default styles on some inputs for iOS
+input {
+	display: inline-block;
+	&[type='email'],
+	&[type='number'],
+	&[type='search'],
+	&[type='text'],
+	&[type='tel'],
+	&[type='url'],
+	&[type='password'] {
+		appearance: none;
+		@extend %input;
+		&:focus {
+			@extend %focus;
+		}
+	}
+}
+
+textarea {
+	appearance: none;
+	min-height: 65px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+label {
+	display: block;
+	margin-bottom: .5rem;
+	font-weight: 600;
+}
+
+// checkboxes
+.checkbox {
+	position: relative;
+	> input[type='checkbox'] {
+		margin: 0 0 1rem 0;
+		margin-bottom: 0;
+		margin-right: 35px;
+		opacity: 0;
+		&:checked {
+			& + label {
+				> .checkmark {
+					transform: scale(.8);
+					opacity: 1;
+				}
+			}
+		}
+		& + label {
+			display: inline-block;
+			margin-left: 0.5rem;
+			margin-right: 1rem;
+			margin-bottom: 0;
+			vertical-align: baseline;
+			cursor: pointer;
+		}
+	}
+	> label {
+		box-shadow: 0 0 25px 0 rgba(0,0,0,.2);
+		position: absolute;
+		top: calc(50% - 20px / 2);
+		left: 0;
+		width: 20px;
+		height: 20px;
+		background-color: #fff;
+		margin-left: 0;
+		> .checkmark {
+			transform: scale(.5);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			transition: .3s;
+			&:before {
+				transform: rotate(45deg);
+			}
+			&:after {
+				transform: rotate(-45deg);
+			}
+			&:before,
+			&:after {
+				content: '';
+				position: absolute;
+				height: 2px;
+				width: 100%;
+				top: 50%;
+				left: 0;
+				margin-top: -1px;
+				background-color: $dark-gray;
+				transition: .3s;
+			}
+		}
+	}
+}

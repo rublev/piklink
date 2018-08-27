@@ -1,0 +1,43 @@
+// @import '../vars';
+@import '~include-media';
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.h1, .h2, .h3, .h4, .h5, .h6, .small,
+h1, h2, h3, h4, h5, h6, small {
+	margin-top: 0;
+	margin-bottom: 2rem;
+	font-weight: 300;
+	line-height: 1.60;
+	// letter-spacing: 0.025rem;
+	display: inline;
+}
+
+.h1, h1 { font-size: $h1; } // 48
+.h2, h2 { font-size: $h2; } // 28
+.h3, h3 { font-size: $h3; } // 26
+.h4, h4 { font-size: $h4; } // 22
+.h5, h5 { font-size: $h5; } // 18
+.h6, h6 { font-size: $h6; } // 14
+.small, small { font-size: $small; } // 12
+
+%ultralight {
+	font-weight: 200;
+}
+%light {
+	font-weight: 300;
+}
+%regular {
+	font-weight: 400;
+}
+%medium {
+	font-weight: 500;
+}
+%semibold {
+	font-weight: 600;
+}
+
+p {
+	margin-top: 0;
+}

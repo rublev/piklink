@@ -1,0 +1,134 @@
+// @import '~include-media';
+@import 'mixins';
+
+// base
+a.button,
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+.button,
+button {
+	$background: $white;
+	display: inline-block;
+	text-align: center;
+	line-height: 50px;
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+	color: $black;
+	background: $background;
+	height: 50px;
+	padding: 0 20px;
+	border-radius: $border-radius;
+	transition: all $duration $bezier;
+	font-size: $h5;
+	letter-spacing: .5px;
+	box-shadow: $shadow-default;
+	border: none;
+	opacity: 1;
+	&:hover {
+		box-shadow: $shadow-hover;
+		cursor: pointer;
+		transform: translateY(-1px);
+		background: darken($background, 2%);
+	}
+}
+
+// colors
+a.button,
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+.button,
+button {
+	&.green,
+	&.blue,
+	&.black {
+		color: $white;
+		@include button-icon-color($white);
+	}
+	&.green {
+		$background: $green;
+		background: $background;
+		&:hover { background: darken($background, 5%) }
+	}
+	&.blue {
+		$background: $blue;
+		background: $background;
+		&:hover { background: darken($background, 5%) }
+	}
+	&.black {
+		$background: $black;
+		background: $background;
+		&:hover { background: darken($background, 5%) }
+	}
+	&.disabled,
+	&:disabled {
+		cursor: not-allowed;
+	}
+}
+
+// sizes
+a.button,
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+.button,
+button {
+	&.large {
+		padding: 0 40px;
+	}
+}
+
+// icons
+a.button,
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+.button,
+button {
+	@include button-icon-color($black);
+	&.green,
+	&.blue,
+	&.black {
+		@include button-icon-color($white);
+	}
+	&.icon {
+		padding: 0 40px 0 20px;
+		> .icon {
+			height: 22px;
+			width: auto;
+			margin-right: 20px;
+			transition: all $duration*2 $bezier;
+		}
+	}
+}
+
+// types: blank (no bg/shadow)
+a.button,
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+.button,
+button {
+	&.blank {
+		background: none;
+		box-shadow: none;
+		padding: 0 10px 0 10px;
+		color: $black; // default
+		&:hover {
+			background: none;
+		}
+		> .icon {
+			margin-right: 10px;
+		}
+		&.green {
+			color: $green;
+			@include button-icon-color($green);
+		}
+		&.blue {
+			color: $blue;
+			@include button-icon-color($blue);
+		}
+	}
+}

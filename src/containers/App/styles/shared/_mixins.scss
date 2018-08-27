@@ -1,0 +1,6 @@
+// buttons mixins
+@mixin button-icon-color($color) {
+	> .icon {
+		fill: $color;
+	}
+}

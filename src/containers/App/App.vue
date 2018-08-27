@@ -1,5 +1,9 @@
 <script>
 
+	import '@/svg'
+	import 'normalize.css'
+	import './styles/style.scss' // unscoped because it needs to style globally
+
 	export default {
 		name: 'app',
 	}

@@ -1,0 +1,51 @@
+// app general
+	$app-text: #000;
+	$duration: 300ms;
+	$container-width: 1200px !default;
+	$nav-height: 150px;
+	$border-radius: 8px !default;
+
+// palette
+	$black: #000;
+	$off-black: #212121;
+
+	$dark-gray: #444A50;
+	$gray: #727E8B;
+	$light-gray: #B7BCC2;
+
+	$dark-white: #D9DEE4;
+	$off-white: #FCFCFC;
+	$white: #FFFFFF;
+
+	$green: #2ACD72;
+	$blue: #1480FF;
+
+// typography
+	$h1: 4.8rem;
+	$h2: 2.8rem;
+	$h3: 2.6rem;
+	$h4: 2.2rem;
+	$h5: 1.8rem;
+	$h6: 1.4rem;
+	$small: 1.2rem;
+	$tiny: 1.0rem;
+
+// shadows
+	$shadow-default: 0 2px 6px 0 rgba(0,21,64,0.14),
+		0 10px 20px 0 rgba(0,21,64,0.05);
+	$shadow-hover: 0 2px 6px 0 rgba(0,21,64,0.21),
+		0 10px 20px 0 rgba(0,21,64,0.08);
+
+// animations
+	$bezier: cubic-bezier(.645,.045,.355,1);
+
+// breakpoints
+	$breakpoints: (
+		desktop: 1200px,
+	);
+
+// fonts
+	$font-stack: -apple-system, BlinkMacSystemFont,
+		'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+		'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;

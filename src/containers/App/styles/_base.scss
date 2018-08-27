@@ -1,0 +1,98 @@
+@import 'vars';
+
+$link-color: $app-text;
+
+/* base
+note
+html is set to 62.5% so that all the REM measurements throughout are based
+on 10px sizing. so basically 1.5rem = 15px
+************************************************/
+
+	* {
+		box-sizing: border-box;
+		outline: none;
+		-webkit-appearance: none;
+	}
+
+	html {
+		font-size: 62.5%;
+	}
+
+	body {
+		/* currently ems cause chrome bug misinterpreting rem on body element
+		*************************************************/
+		font-size: 1.5em;
+		line-height: 1.6;
+		font-weight: 400;
+		font-family: $font-stack !important;
+		color: $app-text;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+		&.hide-scroll {
+			overflow: hidden;
+		}
+	}
+
+/* links
+************************************************/
+	a {
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		-webkit-tap-highlight-color: transparent;
+		color: $app-text;
+		transition: all $duration ease-in-out;
+		text-decoration: none;
+		display: inline-block;
+		opacity: 0.8;
+		&:hover {
+			cursor: pointer;
+			transform: translateY(-1px);
+			opacity: 1;
+		}
+	}
+
+/* svg
+************************************************/
+	.svg-icon {
+		display: inline-block;
+		width: 24px;
+		height: 24px;
+		color: inherit;
+		vertical-align: middle;
+		fill: none;
+		stroke: currentColor;
+	}
+
+	.svg-fill {
+		fill: currentColor;
+		stroke: none;
+	}
+
+/* misc
+************************************************/
+	hr {
+		margin-top: 3rem;
+		margin-bottom: 3.5rem;
+		border-width: 0;
+		border-top: 1px solid red;
+	}
+
+	fieldset {
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+/* lists
+************************************************/
+	ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		> li {
+			> a {
+				font-size: $h5;
+				@extend %light;
+			}
+		}
+	}
