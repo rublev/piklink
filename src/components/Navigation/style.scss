@@ -79,11 +79,13 @@
 						height: 72px;
 						overflow: hidden;
 						border-radius: 8px;
+						transition: all $duration $bezier;
 						> img {
 							height: 72px;
 							width: auto;
 							margin-left: 50%;
 							transform: translateX(-50%);
+							transition: all $duration $bezier;
 						}
 					}
 					> .user-details {
@@ -92,6 +94,7 @@
 						align-items: flex-start;
 						padding-left: 20px;
 						margin-top: 4px;
+						transition: all $duration $bezier;
 						> .name {
 							@extend .h4;
 							margin: 0;
@@ -99,6 +102,7 @@
 						> .username {
 							@extend .h6;
 							color: $dark-gray;
+							transition: all $duration $bezier;
 						}
 					}
 					> .signout {
@@ -107,6 +111,7 @@
 							fill: $white;
 							width: 30px;
 							height: 30px;
+							transition: all $duration $bezier;
 						}
 					}
 				}
@@ -198,37 +203,30 @@
 				> ul {
 					> li {
 						&.user {
-							transition: all $duration $bezier;
-							> .blank {
-							}
 							> .avatar {
 								width: 36px;
 								height: 36px;
 								border-radius: 4px;
-								transition: all $duration $bezier;
 								> img {
 									height: 36px;
-									transition: all $duration $bezier;
 								}
 							}
 							> .user-details {
-								margin-bottom: 10px;
-								transition: all $duration $bezier;
-								> .name {
-									transition: all $duration $bezier;
-								}
+								// margin-bottom: 10px;
+								transform: scale(0.8);
+								padding-right: 0;
 								> .username {
-									transition: all $duration $bezier;
-									display: none;
+									// display: none;
+								}
+								> .name {
+
 								}
 							}
 							> .signout {
 								margin-bottom: 2px;
-								transition: all $duration $bezier;
 								> svg {
 									width: 15px;
 									height: 15px;
-									transition: all $duration $bezier;
 								}
 							}
 						}
