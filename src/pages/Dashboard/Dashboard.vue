@@ -3,11 +3,13 @@
 <script>
 
 	import Navigation from '@/components/Navigation/Navigation'
+	import Upload from '@/components/Upload/Upload'
 
 	export default {
 		name: 'dashboard',
 		components: {
-			Navigation
+			Navigation,
+			Upload,
 		},
 		data: () => ({
 			blockstack: window.blockstack,
@@ -43,5 +45,6 @@
 <template>
 	<div class='dashboard' v-if='user' v-bind:style='{ height: "1000px" }'>
 		<Navigation :user='user' />
+		<Upload />
 	</div>
 </template>
