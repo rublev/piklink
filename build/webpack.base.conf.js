@@ -25,6 +25,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
+      'include-media': path.join(process.cwd(), '/node_modules/include-media/dist/_include-media.scss'),
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
     }
