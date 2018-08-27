@@ -196,7 +196,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0;
+		padding: 0 20px;
 		&.is-fixed {
 			height: 90px;
 			> .container {
@@ -212,15 +212,8 @@
 								}
 							}
 							> .user-details {
-								// margin-bottom: 10px;
 								transform: scale(0.8);
 								padding-right: 0;
-								> .username {
-									// display: none;
-								}
-								> .name {
-
-								}
 							}
 							> .signout {
 								margin-bottom: 2px;
