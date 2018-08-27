@@ -1,0 +1,10 @@
+{
+  "name": "blockgram",
+  "start_url": "localhost:8080",
+  "description": "blockgram",
+  "icons": [{
+    "src": "https://helloblockstack.com/icon-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}
