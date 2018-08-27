@@ -146,53 +146,6 @@
 					&:last-child {
 						padding-bottom: 20px;
 					}
-					// &.blank {
-					// 	flex-grow: 1;
-					// }
-					// &.user {
-					// 	background: $off-black;
-					// 	padding: 20px;
-					// 	display: flex;
-					// 	align-items: center;
-					// 	> .blank {
-					// 		flex-grow: 1;
-					// 	}
-					// 	> .avatar {
-					// 		width: 72px;
-					// 		height: 72px;
-					// 		overflow: hidden;
-					// 		border-radius: 8px;
-					// 		> img {
-					// 			height: 72px;
-					// 			width: auto;
-					// 			margin-left: 50%;
-					// 			transform: translateX(-50%);
-					// 		}
-					// 	}
-					// 	> .user-details {
-					// 		display: flex;
-					// 		flex-direction: column;
-					// 		align-items: flex-start;
-					// 		padding-left: 20px;
-					// 		margin-top: 4px;
-					// 		> .name {
-					// 			@extend .h4;
-					// 			margin: 0;
-					// 		}
-					// 		> .username {
-					// 			@extend .h6;
-					// 			color: $dark-gray;
-					// 		}
-					// 	}
-					// 	> .signout {
-					// 		font-size: 20px;
-					// 		> svg {
-					// 			fill: $white;
-					// 			width: 30px;
-					// 			height: 30px;
-					// 		}
-					// 	}
-					// }
 					a {
 						color: white;
 						font-weight: 200;
@@ -260,6 +213,67 @@
 		padding: 0;
 		&.is-fixed {
 			height: 90px;
+			> .container {
+				> ul {
+					> li {
+						&.user {
+							transition: all $duration $bezier;
+							// background: $off-black;
+							// padding: 20px;
+							// display: flex;
+							// align-items: center;
+							> .blank {
+								// flex-grow: 1;
+							}
+							> .avatar {
+								width: 36px;
+								height: 36px;
+								// overflow: hidden;
+								border-radius: 4px;
+								transition: all $duration $bezier;
+								> img {
+									height: 36px;
+									transition: all $duration $bezier;
+									// width: auto;
+									// margin-left: 50%;
+									// transform: translateX(-50%);
+								}
+							}
+							> .user-details {
+								// display: flex;
+								// flex-direction: column;
+								// align-items: flex-start;
+								// padding-left: 20px;
+								margin-bottom: 10px;
+								transition: all $duration $bezier;
+								> .name {
+									// margin: 0;
+									transition: all $duration $bezier;
+								}
+								> .username {
+									// color: $dark-gray;
+									// border: 2px solid red;
+									transition: all $duration $bezier;
+									display: none;
+									// height: 0;
+									// voerflow: hidden;
+								}
+							}
+							> .signout {
+								margin-bottom: 2px;
+								// font-size: 20px;
+								transition: all $duration $bezier;
+								> svg {
+									// fill: $white;
+									width: 15px;
+									height: 15px;
+									transition: all $duration $bezier;
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 		> .container {
 			max-width: $container-width;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/menu</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M2.56410256,21 L97.4358974,21 C98.8520122,21 100,22.1192881 100,23.5 L100,28.5 C100,29.8807119 98.8520122,31 97.4358974,31 L2.56410256,31 C1.14798782,31 0,29.8807119 0,28.5 L0,23.5 C0,22.1192881 1.14798782,21 2.56410256,21 Z M2.56410256,45 L97.4358974,45 C98.8520122,45 100,46.1192881 100,47.5 L100,52.5 C100,53.8807119 98.8520122,55 97.4358974,55 L2.56410256,55 C1.14798782,55 0,53.8807119 0,52.5 L0,47.5 C0,46.1192881 1.14798782,45 2.56410256,45 Z M2.56410256,70 L97.4358974,70 C98.8520122,70 100,71.1192881 100,72.5 L100,77.5 C100,78.8807119 98.8520122,80 97.4358974,80 L2.56410256,80 C1.14798782,80 0,78.8807119 0,77.5 L0,72.5 C0,71.1192881 1.14798782,70 2.56410256,70 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/menu" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

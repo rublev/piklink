@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/ion-chevron-up</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M50.3291038,55.5301195 L72.2369421,34.503631 C72.9084501,33.832123 73.579948,33.832123 74.2514559,34.503631 L78.1545766,38.2808445 C78.8260845,38.9523525 78.8260845,39.6238504 78.1545766,40.2953584 L51.3363607,65.9804102 C51.0845452,66.2322256 50.7487963,66.3581315 50.3291038,66.3581315 C49.9094113,66.3581315 49.5736623,66.2322256 49.3218468,65.9804102 L22.503631,40.2953584 C21.832123,39.6238504 21.832123,38.9523525 22.503631,38.2808445 L26.4067516,34.503631 C27.0782596,33.832123 27.7497575,33.832123 28.4212655,34.503631 L50.3291038,55.5301195 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/ion-chevron-up" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="chevron-up" fill="#505050" transform="translate(50.329104, 50.179066) scale(1, -1) translate(-50.329104, -50.179066) " xlink:href="#path-1"></use>
+        <g id="colors/black" mask="url(#mask-2)"></g>
+    </g>
+</svg>

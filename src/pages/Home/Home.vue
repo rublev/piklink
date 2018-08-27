@@ -1,7 +1,9 @@
+<style lang='scss' scoped src='./style.scss' />
+
 <script>
 
 	export default {
-		name: 'signin',
+		name: 'home',
 		data () {
 			return {
 				blockstack: window.blockstack
@@ -26,7 +28,9 @@
 </script>
 
 <template>
-	<div class='signin'>
-		<button @click.prevent='signIn'>sign in</button>
+	<div class='home'>
+		<div class='container'>
+			<button @click.prevent='signIn'>sign in</button>
+		</div>
 	</div>
 </template>
