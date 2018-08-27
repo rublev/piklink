@@ -13,6 +13,7 @@
     "blockstack": "^18.0.4",
     "include-media": "^1.4.9",
     "lodash": "^4.17.10",
+    "md5": "^2.2.1",
     "node-sass": "^4.9.1",
     "normalize.css": "^8.0.0",
     "sass-loader": "^7.0.3",
