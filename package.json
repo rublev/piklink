@@ -5,14 +5,22 @@
   "author": "rublev <r@rublev.io>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "build": "node build/build.js"
+    "svg": "vsvg -s ./static/svg -t ./src/svg",
+    "dev": "yarn svg && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "build": " yarn svg && node build/build.js"
   },
   "dependencies": {
     "blockstack": "^18.0.4",
+    "include-media": "^1.4.9",
+    "lodash": "^4.17.10",
+    "node-sass": "^4.9.1",
+    "normalize.css": "^8.0.0",
+    "sass-loader": "^7.0.3",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-svgicon": "^2.1.5",
+    "vuex": "^3.0.1",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
