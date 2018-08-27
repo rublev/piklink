@@ -31,6 +31,22 @@
 				blockstack.putFile(path, result)
 					.then(fileUrl => {
 						console.log(fileUrl);
+						this.updateIndexAndImages(path, result)
+					})
+					.catch((e) => {
+						console.error(e)
+					})
+			},
+			updateIndexAndImages(path, image) {
+				const index = this.index
+				const created = moment().toISOString();
+				index['images'] = [...index.images, {path, created}]
+				let images = [...this.images, image]
+
+				blockstack.putFile('index.json', JSON.stringify(index))
+					.then(() => {
+						console.log('Index.json uploaded')
+						this.setState({ index, images })
 					})
 					.catch((e) => {
 						console.error(e)

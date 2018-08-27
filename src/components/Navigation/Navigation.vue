@@ -22,13 +22,6 @@
 				required: false
 			}
 		}),
-		mounted () {
-			this.$nextTick(() => {
-				console.log(this.user.avatarUrl())
-				console.log(this.user.name())
-				console.log(this.user.username)
-			});
-		},
 		methods: {
 			toggleMenu() {
 				this.showMenu = !this.showMenu;
