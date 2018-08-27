@@ -18,8 +18,7 @@
 	transform: translateZ(1000px);
 	transform-style: preserve-3d;
 	&.is-fixed {
-		background: $off-white;
-		box-shadow: 0 2px 6px rgba(0, 21, 64, 0.03), 0 10px 20px rgba(0, 21, 64, 0.05);
+		box-shadow: 0 2px 6px rgba(0, 21, 64, 0.02), 0 10px 20px rgba(0, 21, 64, 0.02);
 		> .container {
 			>.logo-full,
 			>.menu-icon {
@@ -67,10 +66,11 @@
 					flex-grow: 1;
 				}
 				&.user {
-					background: $off-black;
+					background: transparent;
 					padding: 20px;
 					display: flex;
 					align-items: center;
+					transition: all $duration $bezier;
 					> .blank {
 						flex-grow: 1;
 					}
@@ -246,7 +246,6 @@
 					display: flex;
 					align-items: center;
 					&.user {
-						background: $white;
 						padding: 0px;
 						> .avatar {
 							width: 48px;

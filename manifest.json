@@ -1,7 +1,7 @@
 {
-  "name": "blockgram",
+  "name": "piklink",
   "start_url": "localhost:8080",
-  "description": "blockgram",
+  "description": "piklink",
   "icons": [{
     "src": "https://helloblockstack.com/icon-192x192.png",
     "sizes": "192x192",
