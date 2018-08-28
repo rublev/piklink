@@ -21,13 +21,16 @@
 		mounted() {
 			const blockstack = this.blockstack
 			if (blockstack.isSignInPending()) {
+				console.log('0 dash')
 				blockstack.handlePendingSignIn().then(data => {
 					this.setupUser()
 					this.$router.push('/')
 				})
 			} else if (blockstack.isUserSignedIn()) {
+				console.log('1 dash')
 				this.setupUser()
 			} else {
+				console.log('2 dash')
 				this.$router.push('/')
 			}
 		},

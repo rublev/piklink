@@ -12,7 +12,7 @@
 		}),
 		computed: {
 			...mapState({
-				'file': state => state.user.file,
+				'file': state => state.upload.file,
 			}),
 		},
 		methods: {
