@@ -2,7 +2,7 @@ const showNotification = ({ commit }, data) => {
 	commit('SHOW_NOTIF', data)
 	setTimeout(() => {
 		commit('CLOSE_NOTIF')
-	}, data.duration);
+	}, data.duration)
 }
 
 const closeNotification = ({ commit }) => {

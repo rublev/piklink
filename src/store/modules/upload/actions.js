@@ -2,7 +2,11 @@ import md5 from 'md5'
 import * as blockstack from 'blockstack'
 import moment from 'moment'
 
-const uploadPhoto = ({ commit, state }, file) => {
+import {
+	updateImages,
+} from '@/store/modules/wall/actions'
+
+const uploadPhoto = ({ dispatch, state }, file) => {
 	const filereader = new FileReader()
 	filereader.onload = event => {
 		const result = event.target.result
@@ -17,7 +21,7 @@ const uploadPhoto = ({ commit, state }, file) => {
 				blockstack.putFile('index.json', JSON.stringify(index))
 					.then(() => {
 						console.log('index.json uploaded')
-						commit('UPLOAD_IMAGE', { indexImages, images })
+						dispatch('wall/updateImages', { indexImages, images }, { root: true })
 					})
 					.catch((e) => {
 						console.error(e)

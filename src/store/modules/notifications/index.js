@@ -9,7 +9,7 @@ const state = {
 	type: '',
 	message: '',
 	duration: 5000,
-};
+}
 
 export default {
 	namespaced: true,
