@@ -2,26 +2,27 @@
 
 <script>
 
-	import { mapActions } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
 
 	import FixedHeader from '@/components/FixedHeader'
 
 	export default {
 		name: 'navigation',
-		props: ['user'],
 		components: {
 			FixedHeader,
 		},
 		data: () => ({
 			blockstack: window.blockstack,
 			isFixed: false,
-			showMenu: false,
-			threshold: {
-				type: Number,
-				default: 0,
-				required: false
-			}
+			showMenu: false
 		}),
+		computed: {
+			...mapState({
+				'name': state => state.user.profile !== null ? state.user.profile.name() : null,
+				'avatarUrl': state => state.user.profile !== null ? state.user.profile.avatarUrl() : null,
+				'username': state => state.user.profile !== null ? state.user.profile.username : null,
+			}),
+		},
 		methods: {
 			toggleMenu() {
 				this.showMenu = !this.showMenu;
@@ -69,20 +70,17 @@
 							</router-link>
 						</li>
 						<li class='blank'></li>
-						<li class='user' v-if='user !== null'>
+						<li class='user'>
 							<div class='avatar'>
-								<img :src="user.avatarUrl() ? user.avatarUrl() : '/avatar-placeholder.png'" class='avatar'>
+								<img v-if='avatarUrl !== null' :src='avatarUrl' class='avatar'>
+								<svgicon v-if='avatarUrl === null' name='logo/head-bw' class='icon' :original='true'></svgicon>
 							</div>
 							<div class='user-details'>
 								<div class='name'>
-									{{
-										user.name() ? user.name() : 'Nameless Person'
-									}}
+									{{ name }}
 								</div>
 								<div class='username'>
-									{{
-										user.username ? user.username : user.identityAddress
-									}}
+									{{ username }}
 								</div>
 							</div>
 							<div class='blank'></div>
@@ -110,21 +108,18 @@
 					</li>
 					<li class='blank'></li>
 					</li>
-					<li class='user' v-if='user !== null'>
+					<li class='user'>
 						<div class='user-details'>
 							<div class='name'>
-								{{
-									user.name() ? user.name() : 'Nameless Person'
-								}}
+								{{ name }}
 							</div>
 							<div class='username'>
-								{{
-									user.username ? user.username : user.identityAddress
-								}}
+								{{ username }}
 							</div>
 						</div>
 						<div class='avatar'>
-							<img :src="user.avatarUrl() ? user.avatarUrl() : '/avatar-placeholder.png'" class='avatar'>
+							<img v-if='avatarUrl !== null' :src='avatarUrl' class='avatar'>
+							<svgicon v-if='avatarUrl === null' name='logo/head-bw' class='icon' :original='true'></svgicon>
 						</div>
 						<div class='signout'>
 							<svgicon name='icon/signout' class='icon' :original='true' @click.native='signOut()'></svgicon>

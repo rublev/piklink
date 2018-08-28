@@ -87,6 +87,10 @@
 							transform: translateX(-50%);
 							transition: all $duration $bezier;
 						}
+						> .icon {
+							width: 72px;
+							height: 72px;
+						}
 					}
 					> .user-details {
 						display: flex;
@@ -111,6 +115,7 @@
 							fill: $white;
 							width: 30px;
 							height: 30px;
+							margin-bottom: 3px;
 							transition: all $duration $bezier;
 						}
 					}
@@ -216,6 +221,10 @@
 								> img {
 									height: 36px;
 								}
+								> .icon {
+									width: 36px;
+									height: 36px;
+								}
 							}
 							> .user-details {
 								transform: scale(0.8);
@@ -258,6 +267,10 @@
 							height: 48px;
 							margin-right: 20px;
 							> img {
+								height: 48px;
+							}
+							> .icon {
+								width: 48px;
 								height: 48px;
 							}
 						}
