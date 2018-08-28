@@ -3,7 +3,7 @@
   "start_url": "piklink.netlify.com",
   "description": "piklink",
   "icons": [{
-    "src": "https://piklink.netlify.com/app-icon.png",
+    "src": "https://piklink.netlify.com/static/app-icon.png",
     "sizes": "192x192",
     "type": "image/png"
   }]
