@@ -1,6 +1,6 @@
 {
   "name": "piklink",
-  "start_url": "piklink.netlify.com",
+  "start_url": "http://localhost:8080",
   "description": "piklink",
   "icons": [{
     "src": "https://piklink.netlify.com/static/app-icon.png",

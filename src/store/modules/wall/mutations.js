@@ -4,8 +4,8 @@ const SEED_IMAGES = (state, payload) => {
 }
 
 const UPDATE_IMAGES = (state, payload) => {
-	state.images = [...state.images, ...payload.images]
-	state.index.images = [...state.index.images, ...payload.indexImages]
+	state.images = payload.images
+	state.index.images = payload.indexImages
 }
 
 export default {

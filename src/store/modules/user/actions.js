@@ -13,9 +13,8 @@ const setupUser = ({ commit, rootState, dispatch }, file) => {
 	commit('USER_DETAILS', { userData, profile })
 	return blockstack.getFile('index.json').then(data => {
 		if (data && !(data instanceof ArrayBuffer)) {
-			console.log('setupUser data', data)
 			const indexImages = JSON.parse(data) || { images: [] }
-			dispatch('wall/updateImages', { indexImages }, { root: true })
+			dispatch('wall/updateImages', { indexImages: indexImages.images }, { root: true })
 		}
 	})
 		.then(() => {
@@ -25,14 +24,12 @@ const setupUser = ({ commit, rootState, dispatch }, file) => {
 			return Promise.all(promises)
 		})
 		.then(images => {
-			console.log('images', images)
 			dispatch('wall/updateImages', { images }, { root: true })
 		})
 		.catch((e) => {
 			console.error(e)
 		})
 }
-
 
 export default {
 	setupUser,
