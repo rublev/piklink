@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="950px" height="368px" viewBox="0 0 950 368" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="847px" height="268px" viewBox="0 0 847 268" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
     <title>logo/full</title>
     <desc>Created with Sketch.</desc>
@@ -7,7 +7,7 @@
         <path d="M40.5063444,0.481788338 L226.538624,0.481788338 C248.630014,0.481788338 266.538624,18.3903983 266.538624,40.4817883 L266.538624,226.514068 C266.538624,248.605458 248.630014,266.514068 226.538624,266.514068 L40.5063444,266.514068 C18.4149544,266.514068 0.506344384,248.605458 0.506344384,226.514068 L0.506344384,40.4817883 C0.506344384,18.3903983 18.4149544,0.481788338 40.5063444,0.481788338 Z" id="path-1"></path>
     </defs>
     <g id="logo/full" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="logo" transform="translate(47.641620, 50.000000)">
+        <g id="logo" transform="translate(0.641620, 0.000000)">
             <g id="icon" transform="translate(0.031250, 0.500000)">
                 <mask id="mask-2" fill="white">
                     <use xlink:href="#path-1"></use>

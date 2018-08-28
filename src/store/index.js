@@ -1,19 +1,21 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 import createLogger from 'vuex/dist/logger'
 
-import * as getters from '@/store/getters'
-import * as actions from '@/store/actions'
-import user from '@/store/modules/user';
+import photoModule from './modules/photo'
+import userModule from './modules/user'
+import notificationsModule from './modules/notifications'
+import modalsModule from './modules/modals'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-	getters,
-	actions,
 	modules: {
-		user,
+		photo: photoModule,
+		user: userModule,
+		notifications: notificationsModule,
+		modals: modalsModule,
 	},
 	plugins: [createLogger()],
 	strict: process.env.NODE_ENV !== 'production',
-})
+});
