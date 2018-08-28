@@ -148,6 +148,9 @@
 				li {
 					text-align: center;
 					padding-bottom: 40px;
+					&.user {
+						background: rgba($off-black, 0.5);
+					}
 					&:last-child {
 						padding-bottom: 20px;
 					}
@@ -200,6 +203,9 @@
 		&.is-fixed {
 			height: 90px;
 			> .container {
+				> .logo-full {
+					height: 36px;
+				}
 				> ul {
 					> li {
 						&.user {
@@ -232,7 +238,7 @@
 			width: 100%;
 			height: 50px;
 			> .logo-full {
-				height: 36px;
+				height: 48px;
 			}
 			> .menu-icon {
 				display: none;
