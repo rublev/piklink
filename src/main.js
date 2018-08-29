@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { sync } from 'vuex-router-sync'
 import _ from 'lodash'
 import * as svgicon from 'vue-svgicon'
+import * as blockstack from 'blockstack'
 
 import App from '@/containers/App/App'
 import router from '@/router'
@@ -13,9 +14,8 @@ Vue.use(Vuex)
 
 sync(store, router)
 
-window.blockstack = require('blockstack')
-
 Vue.set(Vue.prototype, '_', _)
+Vue.set(Vue.prototype, 'blockstack', blockstack)
 
 Vue.use(svgicon, {
 	tagName: 'svgicon'
