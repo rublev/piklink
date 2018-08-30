@@ -19,7 +19,7 @@
 			...mapState({
 				'name': state => state.user.profile !== null ? state.user.profile.name() : null,
 				'avatarUrl': state => state.user.profile !== null ? state.user.profile.avatarUrl() : null,
-				'username': state => state.user.profile !== null ? state.user.profile.username : null,
+				'username': state => state.user.data !== null ? (state.user.data.username || state.user.data.identityAddress) : null,
 			}),
 		},
 		methods: {

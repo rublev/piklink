@@ -43,6 +43,6 @@
 	<div class='dashboard' v-bind:style='{ height: "1000px" }'>
 		<Navigation />
 		<Upload />
-		<!-- <Wall /> -->
+		<Wall />
 	</div>
 </template>
