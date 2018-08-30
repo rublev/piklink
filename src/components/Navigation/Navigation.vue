@@ -12,7 +12,6 @@
 			FixedHeader,
 		},
 		data: () => ({
-			blockstack: window.blockstack,
 			isFixed: false,
 			showMenu: false
 		}),

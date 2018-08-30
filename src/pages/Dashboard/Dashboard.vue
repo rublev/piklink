@@ -15,9 +15,6 @@
 			Upload,
 			Wall,
 		},
-		data: () => ({
-			blockstack: window.blockstack,
-		}),
 		mounted() {
 			const blockstack = this.blockstack
 			if (blockstack.isSignInPending()) {

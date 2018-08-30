@@ -7,9 +7,6 @@
 
 	export default {
 		name: 'upload',
-		data: () => ({
-			blockstack: window.blockstack,
-		}),
 		computed: {
 			...mapState({
 				'file': state => state.upload.file,
@@ -19,6 +16,7 @@
 			...mapActions({
 				uploadPhoto: 'upload/uploadPhoto',
 				selectPhoto: 'upload/selectPhoto',
+				resetPhotos: 'upload/resetPhotos',
 			})
 		}
 	}
@@ -29,5 +27,6 @@
 	<div class='upload'>
 		<input type='file' @change='selectPhoto'>
 		<button @click='uploadPhoto(file)'>Upload!</button>
+		<button @click='resetPhotos()'>Reset</button>
 	</div>
 </template>

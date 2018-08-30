@@ -4,9 +4,6 @@
 
 	export default {
 		name: 'wall',
-		data: () => ({
-			blockstack: window.blockstack,
-		})
 	}
 
 </script>

@@ -4,11 +4,6 @@
 
 	export default {
 		name: 'home',
-		data () {
-			return {
-				blockstack: window.blockstack
-			}
-		},
 		mounted () {
 			if (this.blockstack.isUserSignedIn()) {
 				this.$router.push('/dashboard')
