@@ -4,13 +4,16 @@
 
 	import { mapState, mapActions } from 'vuex'
 	import md5 from 'md5'
+	// import smoothReflow from 'vue-smooth-reflow'
 
 	export default {
 		name: 'upload',
+		// mixins: [ smoothReflow ],
 		data: () => ({
 			file: null,
 			fileName: null,
 			newFile: null,
+			imagesLoaded: null
 		}),
 		beforeDestory () {
 			window.removeEventListener('paste', this.onPaste)
@@ -44,6 +47,7 @@
 		},
 		watch: {
 			images (newCount, oldCount) {
+				this.imagesLoaded = true
 				if (newCount > oldCount) {
 					this.file = null
 				}
@@ -98,7 +102,7 @@
 </script>
 
 <template>
-	<div class='upload'>
+	<div :class="{ upload: true, 'images-loaded': imagesLoaded }" ref='upload'>
 		<div class='content-box'>
 			<transition name='fade'>
 				<img v-show='newFile && file' :src='file' />
@@ -111,6 +115,7 @@
 		<div class='upload-boxes'>
 			<button :disabled='!newFile' @click='uploadImage(file)'>Upload!</button>
 			<button @click='resetAll()' class='blank color-light-gray'>Cancel</button>
+			<button @click='reset()' class='blank color-light-gray'>reset</button>
 		</div>
 	</div>
 </template>

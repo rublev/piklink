@@ -22,6 +22,7 @@ const uploadImage = async ({ dispatch, rootState }, image) => {
 
 const resetImages = async ({ commit }) => {
 	await blockstack.putFile('index.json', JSON.stringify(null))
+	commit('RESET_IMAGES')
 }
 
 export default {

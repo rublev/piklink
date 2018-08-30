@@ -6,24 +6,11 @@
 
 .app {
 	display: flex;
-	// justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	min-height: 100%;
-
-	// height: calc(100vh - #{$nav-height});
-	// height: 100vh;
-	// padding-top: $nav-height;
-	// margin-bottom: $nav-height;
-	// background: $app-bg;
-	// background-size: cover;
 	padding: 90px 0 0;
-}
-
-@include media('>=1280px') {
-	.app {
-		// padding: 90px 50px 0;
-	}
+	height: 100vh;
+	min-height: 100vh;
 }
 
 @include media('>=desktop') {

@@ -8,6 +8,9 @@ import * as blockstack from 'blockstack'
 import App from '@/containers/App/App'
 import router from '@/router'
 
+import VueAnime from '@/libs/anime'
+Vue.use(VueAnime)
+
 import store from './store'
 
 Vue.use(Vuex)

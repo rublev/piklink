@@ -10,6 +10,7 @@
     "build": " yarn svg && node build/build.js"
   },
   "dependencies": {
+    "animejs": "^2.2.0",
     "blockstack": "^18.0.4",
     "include-media": "^1.4.9",
     "lodash": "^4.17.10",
@@ -20,6 +21,7 @@
     "sass-loader": "^7.0.3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
+    "vue-smooth-reflow": "^0.1.6",
     "vue-svgicon": "^2.1.5",
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0"

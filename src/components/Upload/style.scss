@@ -5,7 +5,6 @@
 /* layout
 ************************************************/
 	.upload {
-		height: 300px;
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
@@ -14,8 +13,13 @@
 		border-top: 2px solid #fafafa;
 		overflow: hidden;
 		position: relative;
+		height: calc(80vh - 150px);
+		transition: all $duration * 2 $bezier;
 		&:hover {
 			cursor: pointer;
+		}
+		&.images-loaded {
+			height: 300px;
 		}
 	}
 
@@ -67,6 +71,7 @@
 							z-index: 6;
 							padding: 0 25px;
 							// @extend %semibold;
+							cursor: pointer;
 							> .strong {
 								color: $dark-gray;
 							}
@@ -99,6 +104,7 @@
 							background: linear-gradient(to bottom, rgba($white, 0.9) 0%, rgba($white, 1) 110%);
 							content: ' ';
 							z-index: 5;
+							cursor: pointer;
 						}
 					}
 				}
