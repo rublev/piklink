@@ -7,26 +7,31 @@
 
 	export default {
 		name: 'upload',
-		computed: {
-			...mapState({
-				'file': state => state.upload.file,
-			}),
-		},
+		data: () => ({
+			file: null,
+			fileName: null,
+		}),
 		methods: {
 			...mapActions({
-				uploadPhoto: 'upload/uploadPhoto',
-				selectPhoto: 'upload/selectPhoto',
-				resetPhotos: 'upload/resetPhotos',
-			})
+				upload: 'upload/uploadPhoto',
+				reset: 'upload/resetPhotos',
+			}),
+			selectPhoto (event) {
+				const { target } = event
+				this.file = target.files[0]
+				this.fileName = target.value.split( '\\' ).pop()
+			}
 		}
 	}
-
 </script>
 
 <template>
 	<div class='upload'>
-		<input type='file' @change='selectPhoto'>
-		<button @click='uploadPhoto(file)'>Upload!</button>
-		<button @click='resetPhotos()'>Reset</button>
+		<input type='file' id='input-file' class='input-file' @change='selectPhoto' />
+		<label for='input-file' class='button blue'>
+			<span>{{ fileName || 'Choose a file...' }}</span>
+		</label>
+		<button @click='upload(file)'>Upload!</button>
+		<button @click='reset()'>Reset</button>
 	</div>
 </template>
