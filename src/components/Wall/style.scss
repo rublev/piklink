@@ -7,7 +7,7 @@
 	.wall {
 		display: flex;
 		flex-direction: column;
-		background: $purple;
+		background: $white;
 		padding: 0 10px 10px;
 		align-items: center;
 		flex-grow: 1;
@@ -16,7 +16,7 @@
 			@extend .h1;
 			@extend %ultralight;
 			padding: 20px 0;
-			color: $white;
+			color: $off-black;
 		}
 		.wall-container {
 			display: flex;
@@ -39,7 +39,6 @@
 					position: relative;
 					overflow: hidden;
 					margin: 0 30px 30px;
-					border-radius: 8px;
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -55,22 +54,25 @@
 		}
 	}
 
-@include media('>=desktop') {
+@include media('>=600px') {
 	/* layout
 	************************************************/
 		.wall {
-			// display: flex;
-			// flex-direction: column;
+			display: flex;
+			flex-direction: column;
 			// background: $purple;
 			// padding: 0 10px 10px;
-			// align-items: center;
+			align-items: center;
+			justify-content: center;
 			// flex-grow: 1;
 			// position: relative;
+			// max-width: $container-width;
 			> header {
 				// padding: 20px 0;
 				// color: $white;
 			}
 			.wall-container {
+				max-width: $container-width;
 				// display: flex;
 				// flex-direction: column;
 				// align-items: center;
@@ -82,13 +84,13 @@
 					flex-direction: row;
 					> .item {
 						// background: $white;
-						flex: 1 0 calc(33% - 60px);
-						max-width: calc(33% - 60px);
+						flex: 1 0 calc(25% - 20px);
+						max-width: calc(25% - 20px);
 						// align-self: flex-start;
 						// flex-grow: 1;
 						// position: relative;
 						// overflow: hidden;
-						margin: 0 30px 60px;
+						margin: 0 20px 40px;
 						// border-radius: 8px;
 						// display: flex;
 						// align-items: center;

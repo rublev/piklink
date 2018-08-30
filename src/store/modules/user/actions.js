@@ -6,7 +6,7 @@ const fetchFile = path => {
 	return blockstack.getFile(path)
 }
 
-const loading = ({ commit }, loadingState) => {
+export const loading = ({ commit }, loadingState) => {
 	commit('LOADING', loadingState)
 }
 

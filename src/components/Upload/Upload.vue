@@ -109,13 +109,16 @@
 			</transition>
 			<input type='file' id='input-file' class='input-file' @change='selectImage' />
 			<label for='input-file' class='test' ref='file-label'>
-				<span :class="{ 'has-file': file }" v-html="fileName || `<span class='strong'>Select</span>, <span class='strong'>drop,</span> or <span class='strong'>paste</span> an image from your clipboard...`"></span>
+				<span :class="{ 'has-file': file }" v-html="fileName ? `<span class='strong'>${fileName ? fileName : 'None'}</span> selected.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this blue header...`"></span>
 			</label>
 		</div>
 		<div class='upload-boxes'>
-			<button :disabled='!file' @click='uploadImage(file)'>Upload!</button>
-			<button @click='resetAll()' class='blank color-light-gray'>Cancel</button>
-			<button @click='resetImage()' class='blank color-light-gray'>reset</button>
+			<button class='purple icon upload-btn' :disabled='!file' @click='uploadImage(file)'>
+				<svgicon name='icon/signin' class='icon' :original='false'></svgicon>
+				<span>Upload!</span>
+			</button>
+			<button @click='resetAll()' class='blank purple'>Cancel</button>
+			<button @click='resetImage()' class='blank purple'>Reset All Images</button>
 		</div>
 	</div>
 </template>

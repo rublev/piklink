@@ -5,7 +5,7 @@ const state = {
 	data: null,
 	profile: null,
 	loggedIn: false,
-	loading: false,
+	loading: true,
 }
 
 export default {

@@ -71,6 +71,7 @@ button {
 	&:disabled {
 		// background: lighten($light-gray, 20%);
 		color: lighten($gray, 20%);
+		@include button-icon-color(lighten($gray, 20%));
 		cursor: not-allowed;
 	}
 }
@@ -94,19 +95,19 @@ input[type='reset'],
 input[type='button'],
 .button,
 button {
-	@include button-icon-color($black);
-	&.green,
-	&.blue,
-	&.purple,
-	&.black {
-		@include button-icon-color($white);
-	}
 	&.icon {
 		padding: 0 40px 0 20px;
+		@include button-icon-color($black);
+		&.green,
+		&.blue,
+		&.purple,
+		&.black {
+			@include button-icon-color($white);
+		}
 		> .icon {
-			height: 22px;
+			height: 18px;
 			width: auto;
-			margin-right: 20px;
+			margin-right: 10px;
 			transition: all $duration*2 $bezier;
 		}
 	}

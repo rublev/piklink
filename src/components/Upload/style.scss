@@ -9,13 +9,12 @@
 		align-items: center;
 		justify-content: space-around;
 		flex-direction: column;
-		border-bottom: 2px solid #fafafa;
-		border-top: 2px solid #fafafa;
 		overflow: hidden;
 		position: relative;
 		height: 400px;
 		min-height: 200px;
 		transition: all $duration * 2 $bezier;
+		// background: #f4f6ff;
 		&:hover {
 			cursor: pointer;
 		}
@@ -46,7 +45,7 @@
 				height: 100%;
 				position: relative;
 				overflow: hidden;
-				background: $white;
+				background: #C4DFFF;
 				transition: all $duration $bezier;
 				> div {
 					> img {
@@ -76,13 +75,13 @@
 						z-index: 4;
 						> span {
 							font-size: 18px;
-							color: $gray;
+							color: darken($purple, 20%);
 							z-index: 6;
-							padding: 0 25px;
+							padding: 0 50px;
 							// @extend %semibold;
 							cursor: pointer;
 							> .strong {
-								color: $dark-gray;
+								color: darken($purple, 40%);
 							}
 							letter-spacing: 0.25px;
 							transition: all $duration $bezier;
@@ -95,10 +94,12 @@
 						justify-content: center;
 						position: relative;
 						padding-bottom: 100px;
+						// background: #f4f6ff;
+						// background: rgba(#f4f6ff, 0.2);
 						&.drag {
 							opacity: 1;
 							> span {
-								color: lighten($blue, 10%);
+								color: darken($purple, 20%);
 							}
 							transform: scale(1.025);
 						}
@@ -110,7 +111,7 @@
 							right: 0;
 							top: 0;
 							bottom: -5px;
-							background: linear-gradient(to bottom, rgba($white, 0.9) 0%, rgba($white, 1) 110%);
+							background: linear-gradient(to bottom, rgba(#ebf3ff, 0.9) 0%, rgba(#ebf3ff, 1) 110%);
 							content: ' ';
 							z-index: 5;
 							cursor: pointer;
@@ -122,9 +123,19 @@
 		************************************************/
 			.upload-boxes {
 				position: absolute;
-				bottom: 50px;
+				bottom: 25px;
 				z-index: 5;
+				width: 100%;
+				// left: 25px;
+				// right: 25px;
+				right: 50px;
+				margin-left: 50px;
+				display: flex;
+				flex-direction: column;
 				> button {
-					margin: 0 10px;
+					margin-left: 100px;
+					&.upload-btn {
+
+					}
 				}
 			}
