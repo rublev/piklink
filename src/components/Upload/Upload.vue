@@ -12,7 +12,6 @@
 		data: () => ({
 			file: null,
 			fileName: null,
-			newFile: null,
 		}),
 		computed: {
 			...mapState({
@@ -100,7 +99,7 @@
 </script>
 
 <template>
-	<div :class="{ upload: true, 'images-loaded': images > 0 }" ref='upload'>
+	<div :class="{ upload: true, 'images-loaded': images > 0 || file }" ref='upload'>
 		<div class='content-box'>
 			<transition name='fade'>
 				<div v-show='file'>
@@ -109,7 +108,7 @@
 			</transition>
 			<input type='file' id='input-file' class='input-file' @change='selectImage' />
 			<label for='input-file' class='test' ref='file-label'>
-				<span :class="{ 'has-file': file }" v-html="fileName ? `<span class='strong'>${fileName ? fileName : 'None'}</span> selected.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this blue header...`"></span>
+				<span :class="{ 'has-file': file }" v-html="fileName ? `<span class='strong'>${fileName ? fileName : 'None'}</span> selected.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
 			</label>
 		</div>
 		<div class='upload-boxes'>

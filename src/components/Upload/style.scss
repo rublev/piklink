@@ -7,26 +7,45 @@
 	.upload {
 		display: flex;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: space-between;
 		flex-direction: column;
 		overflow: hidden;
 		position: relative;
-		height: 400px;
-		min-height: 200px;
 		transition: all $duration * 2 $bezier;
+		background: $white;
 		&:hover {
 			cursor: pointer;
 		}
 		&.images-loaded {
-			height: 200px;
+		}
+		&:before {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: -5px;
+			// background: linear-gradient(to bottom, rgba(green, 0.9) 0%, rgba(green, 1) 110%);
+			content: ' ';
+			z-index: 5;
+			cursor: pointer;
+			background: rgba($white, 0.85);
+		}
+		&:after {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: -5px;
+			background: linear-gradient(to bottom, rgba($purple, 0.10) 0%, rgba($white, .55) 80%);
+			content: ' ';
+			z-index: 6;
+			cursor: pointer;
 		}
 	}
-
-	/* loader
-	************************************************/
-		.loader {
-			// margin: 100px 0;
-		}
 
 	/* inputs
 	************************************************/
@@ -37,15 +56,16 @@
 			}
 		}
 
-		/* content box
+		/* 1. content box
 		************************************************/
 			.content-box {
-				width: 100vw;
+				width: 100%;
 				height: 100%;
 				position: relative;
-				overflow: hidden;
-				background: #C4DFFF;
+				// overflow: hidden;
 				transition: all $duration $bezier;
+				// margin: 25px 0;
+				// padding: 100px 50px;
 				> div {
 					> img {
 						position: absolute;
@@ -68,16 +88,13 @@
 					overflow: hidden;
 					position: absolute;
 					z-index: -1;
-					&:focus + label { /* keyboard nav */
-					}
 					& + label {
-						z-index: 4;
+						z-index: 7;
 						> span {
 							font-size: 18px;
-							color: darken($purple, 20%);
+							color: darken($purple, 10%);
 							z-index: 6;
-							padding: 0 50px;
-							// @extend %semibold;
+							// padding: 0 50px;
 							cursor: pointer;
 							> .strong {
 								color: darken($purple, 40%);
@@ -89,12 +106,13 @@
 						height: 100%;
 						width: 100%;
 						display: flex;
-						align-items: center;
-						justify-content: center;
 						position: relative;
-						padding-bottom: 100px;
-						// background: #f4f6ff;
-						// background: rgba(#f4f6ff, 0.2);
+						justify-content: center;
+						padding: 100px 50px 300px;
+						&:hover {
+							cursor: pointer;
+						}
+						// position: absolute;
 						&.drag {
 							opacity: 1;
 							> span {
@@ -102,51 +120,84 @@
 							}
 							transform: scale(1.025);
 						}
-						&:after {
-							position: absolute;
-							height: 100%;
-							width: 100%;
-							left: 0;
-							right: 0;
-							top: 0;
-							bottom: -5px;
-							background: linear-gradient(to bottom, rgba(#ebf3ff, 0.9) 0%, rgba(#ebf3ff, 1) 110%);
-							content: ' ';
-							z-index: 5;
-							cursor: pointer;
+						// &:after {
+						// 	position: absolute;
+						// 	height: 100%;
+						// 	width: 100%;
+						// 	left: 0;
+						// 	right: 0;
+						// 	top: 0;
+						// 	bottom: -5px;
+						// 	// background: linear-gradient(to bottom, rgba(green, 0.9) 0%, rgba(green, 1) 110%);
+						// 	content: ' ';
+						// 	z-index: 5;
+						// 	cursor: pointer;
+						// 	background: rgba($white, 0.75);
+						// }
+					}
+				}
+
+				.upload {
+					position: relative;
+					&.images-loaded {
+						.content-box {
+							.input-file {
+								& + label {
+									padding: 50px 50px 250px;
+								}
+							}
+						}
+					}
+				}
+				@include media('>=600px') {
+					.upload {
+						position: relative;
+						.content-box {
+							.input-file {
+								& + label {
+									padding: 50px 50px 150px;
+								}
+							}
+						}
+						&.images-loaded {
+							.content-box {
+								.input-file {
+									& + label {
+										padding: 50px 50px 150px;
+									}
+								}
+							}
 						}
 					}
 				}
 
-		/* upload boxes
+		/* 2. upload boxes
 		************************************************/
 			.upload-boxes {
-				position: absolute;
-				bottom: 25px;
-				z-index: 5;
-				width: 100%;
-				// left: 25px;
-				// right: 25px;
-				right: 50px;
-				margin-left: 50px;
-				display: flex;
+				z-index: 7;
+				bottom: 50px;
+				// width: 100%;
+				// display: flex;
 				flex-direction: column;
-				> button {
-					margin-left: 100px;
-					&.upload-btn {
-
-					}
-				}
+				// margin-top: 50px;
+				position: absolute;
+				// margin: 0 0 0 100px;
+				right: 50px;
+				left: 50px;
+				width: calc(100% - 100px);
+				display: flex;
+				flex-wrap: wrap;
 			}
 
-			@include media('>=desktop') {
+			@include media('>=600px') {
 				.upload-boxes {
-					flex-direction: row;
-					align-items: center;
+					// flex-direction: row;
+					// align-items: center;
 					justify-content: center;
-					bottom: 50px;
+					// bottom: 50px;
+					flex-direction: row;
 					> button {
-						width: auto;
+						// width: auto;
 					}
 				}
 			}
@@ -154,21 +205,21 @@
 			@include media('>=desktop') {
 				.upload {
 					display: flex;
-					align-items: center;
-					justify-content: space-around;
-					flex-direction: column;
-					overflow: hidden;
-					position: relative;
-					height: 400px;
-					min-height: 200px;
-					transition: all $duration * 2 $bezier;
+					// align-items: center;
+					// justify-content: space-around;
+					// flex-direction: column;
+					// overflow: hidden;
+					// position: relative;
+					// height: 400px;
+					// min-height: 200px;
+					// transition: all $duration * 2 $bezier;
 					&:hover {
-						cursor: pointer;
+						// cursor: pointer;
 					}
 					&.images-loaded {
-						height: 200px;
+						// height: 200px;
 						> .upload-boxes {
-							bottom: 50px;
+							// bottom: 50px;
 						}
 					}
 				}
