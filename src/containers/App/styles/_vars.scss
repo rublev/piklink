@@ -20,6 +20,20 @@
 	$green: #2ACD72;
 	$blue: #1480FF;
 
+	.color-black { color: $black; }
+	.color-off-black { color: $off-black; }
+
+	.color-dark-gray { color: $dark-gray; }
+	.color-gray { color: $gray; }
+	.color-light-gray { color: $light-gray; }
+
+	.color-dark-white { color: $dark-white; }
+	.color-off-white { color: $off-white; }
+	.color-white { color: $white; }
+
+	.color-green { color: $green; }
+	.color-blue { color: $blue; }
+
 // typography
 	$h1: 4.8rem;
 	$h2: 2.8rem;

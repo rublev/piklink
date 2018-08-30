@@ -19,7 +19,6 @@ button {
 	background: $background;
 	height: 50px;
 	padding: 0 20px;
-	border-radius: $border-radius;
 	transition: all $duration $bezier;
 	font-size: $h5;
 	letter-spacing: .5px;
@@ -64,6 +63,8 @@ button {
 	}
 	&.disabled,
 	&:disabled {
+		// background: lighten($light-gray, 20%);
+		color: lighten($gray, 20%);
 		cursor: not-allowed;
 	}
 }

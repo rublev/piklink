@@ -22,7 +22,6 @@ const uploadImage = async ({ dispatch, rootState }, image) => {
 
 const resetImages = async ({ commit }) => {
 	await blockstack.putFile('index.json', JSON.stringify(null))
-	window.location.reload()
 }
 
 export default {

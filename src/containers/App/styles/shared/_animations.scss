@@ -1,5 +1,7 @@
+@import 'vars';
+
 .fade-enter-active, .fade-leave-active {
-	transition: opacity .5s;
+	transition: opacity $duration $bezier;
 }
 
 .fade-enter, .fade-leave-to {

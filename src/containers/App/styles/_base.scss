@@ -82,6 +82,10 @@ on 10px sizing. so basically 1.5rem = 15px
 		padding: 0;
 	}
 
+	.strong {
+		@extend %semibold;
+	}
+
 /* lists
 ************************************************/
 	ul {
