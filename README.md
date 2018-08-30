@@ -6,6 +6,8 @@
 
 [Demo URL](https://piklink.netlify.com)
 
+[Demo Video](https://streamable.com/x4ur9)
+
 [![Demo Vid](https://i.imgur.com/edZklNv.png)](https://streamable.com/x4ur9)
 
 ## Build Setup
