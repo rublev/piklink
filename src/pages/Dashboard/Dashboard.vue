@@ -40,7 +40,7 @@
 </script>
 
 <template>
-	<div class='dashboard' v-bind:style='{ height: "1000px" }'>
+	<div class='dashboard'>
 		<Navigation />
 		<Upload />
 		<Wall />
