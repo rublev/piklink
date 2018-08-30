@@ -8,7 +8,7 @@
 	top: 0;
 	height: 90px;
 	width: 100%;
-	z-index: 4;
+	z-index: 10;
 	left: 0;
 	transition: all $duration $bezier;
 	padding: 20px 25px 0;
@@ -105,7 +105,7 @@
 						}
 						> .username {
 							@extend .h6;
-							color: $dark-gray;
+							color: $gray;
 							transition: all $duration $bezier;
 						}
 					}
