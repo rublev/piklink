@@ -163,6 +163,9 @@
 						color: white;
 						font-weight: 200;
 						letter-spacing: 1px;
+						&.router-link-active {
+							@extend %semibold;
+						}
 						> svg {
 							display: none;
 						}
