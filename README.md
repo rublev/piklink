@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+## Demo
+
+[![Demo Vid](https://i.imgur.com/edZklNv.png)](https://streamable.com/x4ur9)
+
 ## Build Setup
 
 ``` bash

@@ -14,7 +14,6 @@
 		height: 400px;
 		min-height: 200px;
 		transition: all $duration * 2 $bezier;
-		// background: #f4f6ff;
 		&:hover {
 			cursor: pointer;
 		}
@@ -136,6 +135,41 @@
 					margin-left: 100px;
 					&.upload-btn {
 
+					}
+				}
+			}
+
+			@include media('>=desktop') {
+				.upload-boxes {
+					flex-direction: row;
+					align-items: center;
+					justify-content: center;
+					bottom: 50px;
+					> button {
+						width: auto;
+					}
+				}
+			}
+
+			@include media('>=desktop') {
+				.upload {
+					display: flex;
+					align-items: center;
+					justify-content: space-around;
+					flex-direction: column;
+					overflow: hidden;
+					position: relative;
+					height: 400px;
+					min-height: 200px;
+					transition: all $duration * 2 $bezier;
+					&:hover {
+						cursor: pointer;
+					}
+					&.images-loaded {
+						height: 200px;
+						> .upload-boxes {
+							bottom: 50px;
+						}
 					}
 				}
 			}
