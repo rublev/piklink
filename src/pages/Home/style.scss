@@ -38,3 +38,9 @@
 			}
 		}
 	}
+
+	@include media('>=desktop') {
+		.home {
+			margin-top: -150px;
+		}
+	}
