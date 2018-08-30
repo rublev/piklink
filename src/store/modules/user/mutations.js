@@ -5,6 +5,11 @@ const GET_USER_DATA_AND_PROFILE = (state, payload) => {
 	state.loggedIn = true
 }
 
+const LOADING = (state, payload) => {
+	state.loading = payload
+}
+
 export default {
 	GET_USER_DATA_AND_PROFILE,
+	LOADING,
 }

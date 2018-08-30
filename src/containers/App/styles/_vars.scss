@@ -1,11 +1,4 @@
-// app general
-	$app-text: #000;
-	$duration: 300ms;
-	$container-width: 1200px !default;
-	$nav-height: 150px;
-	$border-radius: 8px !default;
-
-// palette
+// colors
 	$black: #000;
 	$off-black: #212121;
 
@@ -37,6 +30,14 @@
 	.color-blue { color: $blue; }
 
 	.purple { color: $purple; }
+
+// app general
+	$app-text: #000;
+	$app-bg: $purple;
+	$duration: 300ms;
+	$container-width: 1200px !default;
+	$nav-height: 150px;
+	$border-radius: 8px !default;
 
 // typography
 	$h1: 4.8rem;

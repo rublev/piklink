@@ -9,7 +9,13 @@ const UPDATE_ALL_IMAGES = (state, payload) => {
 	state.images = images
 }
 
+const RESET_IMAGES = state => {
+	state.index.images = []
+	state.images = []
+}
+
 export default {
 	UPDATE_IMAGES,
 	UPDATE_ALL_IMAGES,
+	RESET_IMAGES,
 }

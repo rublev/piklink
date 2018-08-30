@@ -18,6 +18,11 @@ on 10px sizing. so basically 1.5rem = 15px
 		font-size: 62.5%;
 	}
 
+	html,
+	body {
+		height: 100%;
+	}
+
 	body {
 		/* currently ems cause chrome bug misinterpreting rem on body element
 		*************************************************/

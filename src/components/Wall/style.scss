@@ -12,7 +12,7 @@
 		align-items: center;
 		flex-grow: 1;
 		position: relative;
-		> header {
+		header {
 			@extend .h1;
 			@extend %ultralight;
 			padding: 20px 0;
@@ -27,20 +27,74 @@
 			> .row {
 				display: flex;
 				width: 100%;
+				flex-direction: column;
 				> .item {
 					background: $white;
-					flex: 1 0 calc(33% - 60px);
-					max-width: calc(33% - 60px);
+					// flex: 1 0 calc(33% - 60px);
+					flex: 1 0 auto;
+					// max-width: calc(33% - 60px);
+					max-width: calc(100% - 60px);
 					align-self: flex-start;
 					flex-grow: 1;
 					position: relative;
 					overflow: hidden;
-					margin: 0 30px 60px;
+					margin: 0 30px 30px;
 					border-radius: 8px;
 					display: flex;
 					align-items: center;
 					justify-content: center;
+					width: 100%;
+					> img {
+						// width: 100%;
+						// min-width: 100%;
+						// min-height: 100%;
+						position: absolute;
+					}
 				}
 			}
 		}
 	}
+
+@include media('>=desktop') {
+	/* layout
+	************************************************/
+		.wall {
+			// display: flex;
+			// flex-direction: column;
+			// background: $purple;
+			// padding: 0 10px 10px;
+			// align-items: center;
+			// flex-grow: 1;
+			// position: relative;
+			> header {
+				// padding: 20px 0;
+				// color: $white;
+			}
+			.wall-container {
+				// display: flex;
+				// flex-direction: column;
+				// align-items: center;
+				// flex-grow: 1;
+				// width: 100%;
+				> .row {
+					// display: flex;
+					// width: 100%;
+					flex-direction: row;
+					> .item {
+						// background: $white;
+						flex: 1 0 calc(33% - 60px);
+						max-width: calc(33% - 60px);
+						// align-self: flex-start;
+						// flex-grow: 1;
+						// position: relative;
+						// overflow: hidden;
+						margin: 0 30px 60px;
+						// border-radius: 8px;
+						// display: flex;
+						// align-items: center;
+						// justify-content: center;
+					}
+				}
+			}
+		}
+}

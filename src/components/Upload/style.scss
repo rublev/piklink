@@ -13,15 +13,22 @@
 		border-top: 2px solid #fafafa;
 		overflow: hidden;
 		position: relative;
-		height: calc(80vh - 150px);
+		height: 400px;
+		min-height: 200px;
 		transition: all $duration * 2 $bezier;
 		&:hover {
 			cursor: pointer;
 		}
 		&.images-loaded {
-			height: 300px;
+			height: 200px;
 		}
 	}
+
+	/* loader
+	************************************************/
+		.loader {
+			// margin: 100px 0;
+		}
 
 	/* inputs
 	************************************************/
@@ -41,14 +48,16 @@
 				overflow: hidden;
 				background: $white;
 				transition: all $duration $bezier;
-				> img {
-					position: absolute;
-					z-index: 2;
-					width: 100%;
-					height: auto;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
+				> div {
+					> img {
+						position: absolute;
+						z-index: 2;
+						width: 120%;
+						height: auto;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+					}
 				}
 			}
 

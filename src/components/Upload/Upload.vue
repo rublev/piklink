@@ -13,8 +13,23 @@
 			file: null,
 			fileName: null,
 			newFile: null,
-			imagesLoaded: null
 		}),
+		computed: {
+			...mapState({
+				images: state => state.wall.images.length,
+				loading: state => state.user.loading
+			})
+		},
+		watch: {
+			images (newCount, oldCount) {
+				if (newCount !== oldCount) {
+					this.file = null
+				}
+			},
+			file () {
+				console.log(this.$refs['image'].clientHeight)
+			},
+		},
 		beforeDestory () {
 			window.removeEventListener('paste', this.onPaste)
 			window.removeEventListener('dragenter')
@@ -40,35 +55,23 @@
 				}
 			}, false)
 		},
-		computed: {
-			...mapState({
-				images: state => state.wall.images.length
-			})
-		},
-		watch: {
-			images (newCount, oldCount) {
-				this.imagesLoaded = true
-				if (newCount > oldCount) {
-					this.file = null
-				}
-			}
-		},
 		methods: {
 			...mapActions({
 				upload: 'upload/uploadImage',
 				reset: 'upload/resetImages',
 			}),
 			setFile(file, name = null) {
+				this.resetAll()
 				const reader = new FileReader()
-				reader.readAsDataURL(file)
 				reader.onload = event => {
 					this.file = event.target.result
-					this.newFile = true
 					this.fileName = name
+					console.log(this.$refs['image'].clientHeight)
 				}
+				reader.readAsDataURL(file)
+				console.log(this.$refs['image'].clientHeight)
 			},
 			selectImage(event) {
-				this.newFile = true
 				this.setFile(event.target.files[0], event.target.value.split( '\\' ).pop())
 				this.$refs['file-label'].classList.add('drag')
 			},
@@ -77,24 +80,19 @@
 				const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
 				if (image) this.setFile(image, 'Pasted image')
 				this.$refs['file-label'].classList.add('drag')
-				this.newFile = true
-			},
-			allowDrop(evevent) {
-				event.preventDefault()
-			},
-			drop(evevent) {
-				event.preventDefault()
-				var data = event.dataTransfer.items.getData('text')
-				event.target.appendChild(document.getElementById(data))
 			},
 			resetAll() {
 				this.fileName = null
-				this.newFile = false
+				this.file = null
 				this.$refs['file-label'].classList.remove('drag')
 			},
-			uploadImage(file) {
+			resetImage() {
 				this.resetAll()
+				this.reset()
+			},
+			uploadImage(file) {
 				this.upload(file)
+				this.resetAll()
 			}
 		}
 	}
@@ -102,20 +100,22 @@
 </script>
 
 <template>
-	<div :class="{ upload: true, 'images-loaded': imagesLoaded }" ref='upload'>
+	<div :class="{ upload: true, 'images-loaded': images > 0 }" ref='upload'>
 		<div class='content-box'>
 			<transition name='fade'>
-				<img v-show='newFile && file' :src='file' />
+				<div v-show='file'>
+					<img :src='file' ref='image'/>
+				</div>
 			</transition>
 			<input type='file' id='input-file' class='input-file' @change='selectImage' />
 			<label for='input-file' class='test' ref='file-label'>
-				<span :class="{ 'has-file': newFile }" v-html="fileName || `<span class='strong'>Select</span>, <span class='strong'>drop,</span> or <span class='strong'>paste</span> an image from your clipboard...`"></span>
+				<span :class="{ 'has-file': file }" v-html="fileName || `<span class='strong'>Select</span>, <span class='strong'>drop,</span> or <span class='strong'>paste</span> an image from your clipboard...`"></span>
 			</label>
 		</div>
 		<div class='upload-boxes'>
-			<button :disabled='!newFile' @click='uploadImage(file)'>Upload!</button>
+			<button :disabled='!file' @click='uploadImage(file)'>Upload!</button>
 			<button @click='resetAll()' class='blank color-light-gray'>Cancel</button>
-			<button @click='reset()' class='blank color-light-gray'>reset</button>
+			<button @click='resetImage()' class='blank color-light-gray'>reset</button>
 		</div>
 	</div>
 </template>
