@@ -2,38 +2,30 @@ import md5 from 'md5'
 import * as blockstack from 'blockstack'
 import moment from 'moment'
 
-const uploadPhoto = async ({ dispatch, rootState }, file) => {
-	const reader = new FileReader()
-	reader.readAsDataURL(file)
-	reader.onload = async () => {
-		const result = reader.result
-		const path = 'images/' + md5(result)
-		try {
-			await blockstack.putFile(path, result) // Can omit this declaration cuz i dont think fileUrl is used.
-			const created = moment().toISOString()
-			const rootStateIndex = _.cloneDeep(rootState.wall.index);
-			const index =  {
-				...rootStateIndex,
-				images: [...rootStateIndex.images, { path, created }]
-			}
-			const images = [...rootState.wall.images, result]
-			await blockstack.putFile('index.json', JSON.stringify(index))
-			dispatch('wall/updateAllImages', { index, images }, { root: true })
-		} catch(e) {
-			console.error(e)
+const uploadImage = async ({ dispatch, rootState }, image) => {
+	const path = 'images/' + md5(image)
+	try {
+		await blockstack.putFile(path, image) // Can omit this declaration cuz i dont think fileUrl is used.
+		const created = moment().toISOString()
+		const rootStateIndex = _.cloneDeep(rootState.wall.index);
+		const index =  {
+			...rootStateIndex,
+			images: [...rootStateIndex.images, { path, created }]
 		}
-	}
-	reader.onerror = (error) => {
-		console.log('uploadPhoto() error: ', error)
+		const images = [...rootState.wall.images, image]
+		await blockstack.putFile('index.json', JSON.stringify(index))
+		dispatch('wall/updateAllImages', { index, images }, { root: true })
+	} catch(e) {
+		console.error(e)
 	}
 }
 
-const resetPhotos = async ({ commit }) => {
+const resetImages = async ({ commit }) => {
 	await blockstack.putFile('index.json', JSON.stringify(null))
 	window.location.reload()
 }
 
 export default {
-	uploadPhoto,
-	resetPhotos,
+	uploadImage,
+	resetImages,
 }
