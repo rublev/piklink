@@ -42,6 +42,7 @@ input[type='button'],
 button {
 	&.green,
 	&.blue,
+	&.purple,
 	&.black {
 		color: $white;
 		@include button-icon-color($white);
@@ -58,6 +59,11 @@ button {
 	}
 	&.black {
 		$background: $black;
+		background: $background;
+		&:hover { background: darken($background, 5%) }
+	}
+	&.purple {
+		$background: $purple;
 		background: $background;
 		&:hover { background: darken($background, 5%) }
 	}
@@ -91,6 +97,7 @@ button {
 	@include button-icon-color($black);
 	&.green,
 	&.blue,
+	&.purple,
 	&.black {
 		@include button-icon-color($white);
 	}
@@ -130,6 +137,10 @@ button {
 		&.blue {
 			color: $blue;
 			@include button-icon-color($blue);
+		}
+		&.purple {
+			color: $purple;
+			@include button-icon-color($purple);
 		}
 	}
 }

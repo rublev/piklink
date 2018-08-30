@@ -3,18 +3,38 @@
 
 /* layout
 ************************************************/
-	// .page {
-		// width: 100%;
-		// display: flex;
-		// flex-direction: column;
-		// align-items: center;
-		.home {
-			flex: 1;
-			width: 100%;
-			> .container {
-				z-index: 100;
+	.home {
+		flex: 1;
+		width: 100%;
+		background: $white;
+		margin-top: -90px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		> .container {
+			z-index: 100;
+			display: flex;
+			flex-direction: column;
+			> .logo-container {
 				display: flex;
 				flex-direction: column;
+				align-items: center;
+				> .logo {
+					height: 200px;
+					width: auto;
+				}
+				> .logo-text {
+					width: 200px;
+					height: auto;
+					opacity: 0;
+					transition: opacity 2000ms $bezier;
+					margin-top: 50px;
+					margin-bottom: 50px;
+					&.enable-logo {
+						opacity: 1;
+					}
+				}
 			}
 		}
-	// }
+	}

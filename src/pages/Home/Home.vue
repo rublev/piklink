@@ -2,12 +2,28 @@
 
 <script>
 
+	import { delay } from '@/utils'
+
 	export default {
 		name: 'home',
-		mounted () {
+		data: () => ({
+			enableLogo: false
+		}),
+		async mounted () {
 			if (this.blockstack.isUserSignedIn()) {
 				this.$router.push('/dashboard')
 			}
+			this.$anime({
+			  targets: '.logo path',
+			  strokeDashoffset: [this.$anime.setDashoffset, 0],
+			  easing: 'easeInOutSine',
+			  duration: 5000,
+			  delay: function(el, i) { return i * 250 },
+			  direction: 'alternate',
+			  loop: false
+			});
+			await delay(5000)
+			this.enableLogo = true
 		},
 		methods: {
 			signIn () {
@@ -25,7 +41,11 @@
 <template>
 	<div class='home'>
 		<div class='container'>
-			<button @click.prevent='signIn'>sign in</button>
+			<div class='logo-container'>
+				<svgicon name='logo/head-graphic-lines-color' class='logo' :original='true'></svgicon>
+				<svgicon name='logo/text-color' :class="{'logo-text': true, 'enable-logo': enableLogo}" :original='true'></svgicon>
+			</div>
+			<button class='button purple' @click.prevent='signIn'>Sign In</button>
 		</div>
 	</div>
 </template>
