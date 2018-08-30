@@ -66,7 +66,11 @@
 							color: $gray;
 							z-index: 6;
 							padding: 0 25px;
-							@extend %semibold;
+							// @extend %semibold;
+							> .strong {
+								color: $dark-gray;
+							}
+							letter-spacing: 0.25px;
 							transition: all $duration $bezier;
 						}
 						transition: all $duration $bezier;

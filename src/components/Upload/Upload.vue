@@ -20,6 +20,7 @@
 		},
 		mounted () {
 			const refs = this.$refs
+			const that = this
 			window.addEventListener('paste', this.onPaste)
 			document.addEventListener('dragenter', function( event ) {
 				refs['file-label'].classList.add('drag')
@@ -27,6 +28,7 @@
 			document.addEventListener('drop', function( event ) {
 				event.preventDefault();
 				refs['file-label'].classList.add('drag')
+				that.setFile(event.dataTransfer.items[0].getAsFile(), event.dataTransfer.items[0].getAsFile().name)
 			}, false)
 			document.addEventListener('dragover', function( event ) {
 				event.preventDefault();
@@ -52,23 +54,24 @@
 				upload: 'upload/uploadImage',
 				reset: 'upload/resetImages',
 			}),
-			setFile(file) {
+			setFile(file, name = null) {
 				const reader = new FileReader()
 				reader.readAsDataURL(file)
 				reader.onload = event => {
 					this.file = event.target.result
+					this.newFile = true
+					this.fileName = name
 				}
 			},
 			selectImage(event) {
 				this.newFile = true
-				this.setFile(event.target.files[0])
-				this.fileName = event.target.value.split( '\\' ).pop()
+				this.setFile(event.target.files[0], event.target.value.split( '\\' ).pop())
 				this.$refs['file-label'].classList.add('drag')
 			},
 			onPaste(event) {
 				const item = (event.clipboardData  || event.originalEvent.clipboardData).items
 				const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
-				if (image) this.setFile(image)
+				if (image) this.setFile(image, 'Pasted image')
 				this.$refs['file-label'].classList.add('drag')
 				this.newFile = true
 			},
@@ -77,7 +80,7 @@
 			},
 			drop(evevent) {
 				event.preventDefault()
-				var data = event.dataTransfer.getData('text')
+				var data = event.dataTransfer.items.getData('text')
 				event.target.appendChild(document.getElementById(data))
 			},
 			resetAll() {
@@ -101,8 +104,8 @@
 				<img v-show='newFile && file' :src='file' />
 			</transition>
 			<input type='file' id='input-file' class='input-file' @change='selectImage' />
-			<label for='input-file' ref='file-label'>
-				<span :class="{ 'has-file': newFile }" v-html="fileName || `<span class='strong'>Select</span> a file, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> from your clipboard...`"></span>
+			<label for='input-file' class='test' ref='file-label'>
+				<span :class="{ 'has-file': newFile }" v-html="fileName || `<span class='strong'>Select</span>, <span class='strong'>drop,</span> or <span class='strong'>paste</span> an image from your clipboard...`"></span>
 			</label>
 		</div>
 		<div class='upload-boxes'>
