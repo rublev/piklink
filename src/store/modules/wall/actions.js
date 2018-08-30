@@ -1,16 +1,12 @@
-/*
-	update both images (file data) and metadata (created / path)
-	- is used for both seeding images and updating
-*/
-export const updateImages = ({ commit, state, rootState }, imagesObj) => {
-	let { images, indexImages } = imagesObj
+export const updateImages = ({ commit, state, rootState }, images) => {
+	commit('UPDATE_IMAGES', images)
+}
 
-	images = images == null ? rootState.wall.images : [...rootState.wall.images, ...images]
-	indexImages = indexImages == null ? rootState.wall.index.images : [...rootState.wall.index.images, ...indexImages]
-
-	commit('UPDATE_IMAGES', { images, indexImages })
+export const updateAllImages = ({ commit }, imagesObj) => {
+	commit('UPDATE_ALL_IMAGES', imagesObj)
 }
 
 export default {
 	updateImages,
+	updateAllImages,
 }

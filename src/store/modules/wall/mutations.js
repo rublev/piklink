@@ -1,14 +1,15 @@
-const SEED_IMAGES = (state, payload) => {
-	const { images } = payload
-	state.index.images = images
+const UPDATE_IMAGES = (state, payload) => {
+	console.log('payload', payload)
+	state.images = payload.images
 }
 
-const UPDATE_IMAGES = (state, payload) => {
-	state.images = payload.images
-	state.index.images = payload.indexImages
+const UPDATE_ALL_IMAGES = (state, payload) => {
+	const { index, images } = payload
+	state.index = index
+	state.images = images
 }
 
 export default {
-	SEED_IMAGES,
 	UPDATE_IMAGES,
+	UPDATE_ALL_IMAGES,
 }

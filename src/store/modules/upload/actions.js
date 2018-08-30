@@ -2,42 +2,43 @@ import md5 from 'md5'
 import * as blockstack from 'blockstack'
 import moment from 'moment'
 
-import {
-	updateImages,
-} from '@/store/modules/wall/actions'
-
-const uploadPhoto = ({ dispatch, state, rootState }, file) => {
-	const filereader = new FileReader()
-	filereader.onload = event => {
-		const result = event.target.result
+const uploadPhoto = async ({ dispatch, state, rootState }, file) => {
+	const reader = new FileReader()
+	reader.readAsDataURL(file)
+	reader.onload = async () => {
+		const result = reader.result
 		const path = 'images/' + md5(result)
-		blockstack.putFile(path, result)
-			.then(fileUrl => {
-				const { index } = rootState.wall
-				const created = moment().toISOString()
-				const image = result
-				const indexImages = [...index.images, { path, created }]
-				const images = [...rootState.wall.images, image]
-				blockstack.putFile('index.json', JSON.stringify(index))
-					.then(() => {
-						dispatch('wall/updateImages', { images, indexImages }, { root: true })
-					})
-					.catch((e) => {
-						console.error(e)
-					})
-			})
-			.catch((e) => {
-				console.error(e)
-			})
+		try {
+			await blockstack.putFile(path, result) // Can omit this declaration cuz i dont think fileUrl is used.
+			const created = moment().toISOString()
+			const rootStateIndex = _.cloneDeep(rootState.wall.index);
+			const index =  {
+				...rootStateIndex,
+				images: [...rootStateIndex.images, { path, created }]
+			}
+			const images = [...rootState.wall.images, result]
+			await blockstack.putFile('index.json', JSON.stringify(index))
+			dispatch('wall/updateAllImages', { index, images }, { root: true })
+		} catch(e) {
+			console.error(e)
+		}
 	}
-	filereader.readAsDataURL(file)
+	reader.onerror = (error) => {
+		console.log('uploadPhoto() error: ', error)
+	}
 }
 
 const selectPhoto = ({ commit }, event) => {
 	commit('SELECT_PHOTO', event.target.files[0])
 }
 
+const resetPhotos = async ({ commit }) => {
+	await blockstack.putFile('index.json', JSON.stringify(null))
+	window.location.reload()
+}
+
 export default {
 	uploadPhoto,
 	selectPhoto,
+	resetPhotos,
 }

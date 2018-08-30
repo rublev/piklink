@@ -2,7 +2,7 @@ import actions from './actions'
 import mutations from './mutations'
 
 const state = {
-	userData: null,
+	data: null,
 	profile: null,
 	loggedIn: false,
 }

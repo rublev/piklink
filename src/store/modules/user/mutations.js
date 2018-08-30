@@ -1,10 +1,10 @@
-const USER_DETAILS = (state, payload) => {
-	const { userData, profile } = payload
-	state.userData = userData
+const GET_USER_DATA_AND_PROFILE = (state, payload) => {
+	const { data, profile } = payload
+	state.data = data
 	state.profile = profile
 	state.loggedIn = true
 }
 
 export default {
-	USER_DETAILS,
+	GET_USER_DATA_AND_PROFILE,
 }
