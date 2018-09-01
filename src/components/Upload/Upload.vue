@@ -8,89 +8,89 @@
 	export default {
 		name: 'upload',
 		data: () => ({
-			file: null,
-			fileName: null,
+			// file: null,
+			// fileName: null,
 		}),
 		computed: {
-			...mapState({
-				images: state => state.wall.images.length,
-				loading: state => state.user.loading
-			})
+			// ...mapState({
+			// 	images: state => state.wall.images.length,
+			// 	loading: state => state.user.loading
+			// })
 		},
 		watch: {
-			images (newCount, oldCount) {
-				if (newCount !== oldCount) {
-					this.file = null
-				}
-			},
-			file () {
-				console.log(this.$refs['image'].clientHeight)
-			},
+			// images (newCount, oldCount) {
+			// 	if (newCount !== oldCount) {
+			// 		this.file = null
+			// 	}
+			// },
+			// file () {
+			// 	console.log(this.$refs['image'].clientHeight)
+			// },
 		},
 		beforeDestory () {
-			window.removeEventListener('paste', this.onPaste)
-			window.removeEventListener('dragenter')
-			window.removeEventListener('drop')
-			window.removeEventListener('dragover')
+			// window.removeEventListener('paste', this.onPaste)
+			// window.removeEventListener('dragenter')
+			// window.removeEventListener('drop')
+			// window.removeEventListener('dragover')
 		},
 		mounted () {
-			const refs = this.$refs
-			const that = this
-			window.addEventListener('paste', this.onPaste)
-			document.addEventListener('dragenter', function( event ) {
-				refs['file-label'].classList.add('drag')
-			}, false)
-			document.addEventListener('drop', function( event ) {
-				event.preventDefault();
-				refs['file-label'].classList.add('drag')
-				that.setFile(event.dataTransfer.items[0].getAsFile(), event.dataTransfer.items[0].getAsFile().name)
-			}, false)
-			document.addEventListener('dragover', function( event ) {
-				event.preventDefault();
-				if (event.target.parentNode.toString() == '[object HTMLDocument]') {
-					refs['file-label'].classList.remove('drag')
-				}
-			}, false)
+			// const refs = this.$refs
+			// const that = this
+			// window.addEventListener('paste', this.onPaste)
+			// document.addEventListener('dragenter', function( event ) {
+			// 	refs['file-label'].classList.add('drag')
+			// }, false)
+			// document.addEventListener('drop', function( event ) {
+			// 	event.preventDefault();
+			// 	refs['file-label'].classList.add('drag')
+			// 	that.setFile(event.dataTransfer.items[0].getAsFile(), event.dataTransfer.items[0].getAsFile().name)
+			// }, false)
+			// document.addEventListener('dragover', function( event ) {
+			// 	event.preventDefault();
+			// 	if (event.target.parentNode.toString() == '[object HTMLDocument]') {
+			// 		refs['file-label'].classList.remove('drag')
+			// 	}
+			// }, false)
 		},
 		methods: {
-			...mapActions({
-				upload: 'upload/uploadImage',
-				reset: 'upload/resetImages',
-			}),
-			setFile(file, name = null) {
-				this.resetAll()
-				const reader = new FileReader()
-				reader.onload = event => {
-					this.file = event.target.result
-					this.fileName = name
-					console.log(this.$refs['image'].clientHeight)
-				}
-				reader.readAsDataURL(file)
-				console.log(this.$refs['image'].clientHeight)
-			},
-			selectImage(event) {
-				this.setFile(event.target.files[0], event.target.value.split( '\\' ).pop())
-				this.$refs['file-label'].classList.add('drag')
-			},
-			onPaste(event) {
-				const item = (event.clipboardData  || event.originalEvent.clipboardData).items
-				const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
-				if (image) this.setFile(image, 'Pasted image')
-				this.$refs['file-label'].classList.add('drag')
-			},
-			resetAll() {
-				this.fileName = null
-				this.file = null
-				this.$refs['file-label'].classList.remove('drag')
-			},
-			resetImage() {
-				this.resetAll()
-				this.reset()
-			},
-			uploadImage(file) {
-				this.upload(file)
-				this.resetAll()
-			}
+			// ...mapActions({
+			// 	upload: 'upload/uploadImage',
+			// 	reset: 'upload/resetImages',
+			// }),
+			// setFile(file, name = null) {
+			// 	this.resetAll()
+			// 	const reader = new FileReader()
+			// 	reader.onload = event => {
+			// 		this.file = event.target.result
+			// 		this.fileName = name
+			// 		console.log(this.$refs['image'].clientHeight)
+			// 	}
+			// 	reader.readAsDataURL(file)
+			// 	console.log(this.$refs['image'].clientHeight)
+			// },
+			// selectImage(event) {
+			// 	this.setFile(event.target.files[0], event.target.value.split( '\\' ).pop())
+			// 	this.$refs['file-label'].classList.add('drag')
+			// },
+			// onPaste(event) {
+			// 	const item = (event.clipboardData  || event.originalEvent.clipboardData).items
+			// 	const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
+			// 	if (image) this.setFile(image, 'Pasted image')
+			// 	this.$refs['file-label'].classList.add('drag')
+			// },
+			// resetAll() {
+			// 	this.fileName = null
+			// 	this.file = null
+			// 	this.$refs['file-label'].classList.remove('drag')
+			// },
+			// resetImage() {
+			// 	this.resetAll()
+			// 	this.reset()
+			// },
+			// uploadImage(file) {
+			// 	this.upload(file)
+			// 	this.resetAll()
+			// }
 		}
 		/*
 		data: () => ({
