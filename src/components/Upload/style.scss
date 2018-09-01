@@ -65,13 +65,13 @@
 				// transition: all $duration $bezier;
 				> div {
 					> img {
-						// position: absolute;
-						// z-index: 2;
-						// width: 120%;
-						// height: auto;
-						// top: 50%;
-						// left: 50%;
-						// transform: translate(-50%, -50%);
+						position: absolute;
+						z-index: 2;
+						width: 120%;
+						height: auto;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
 					}
 				}
 			}
@@ -79,12 +79,12 @@
 			/* file input
 			************************************************/
 				.input-file {
-					// width: 0.1px;
-					// height: 0.1px;
-					// opacity: 0;
-					// overflow: hidden;
-					// position: absolute;
-					// z-index: -1;
+					width: 0.1px;
+					height: 0.1px;
+					opacity: 0;
+					overflow: hidden;
+					position: absolute;
+					z-index: -1;
 					& + label {
 						// z-index: 7;
 						> span {
@@ -130,6 +130,7 @@
 						}
 					}
 				}
+
 				@include media('>=600px') {
 					.upload {
 						// position: relative;

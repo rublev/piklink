@@ -7,15 +7,13 @@
 
 	export default {
 		name: 'upload',
-		data: () => ({
-			// file: null,
-			// fileName: null,
-		}),
 		computed: {
-			// ...mapState({
-			// 	images: state => state.wall.images.length,
-			// 	loading: state => state.user.loading
-			// })
+			...mapState({
+				// images: state => state.wall.images.length,
+				// loading: state => state.user.loading
+				file: state => state.upload.file,
+				fileName: state => state.upload.fileName
+			})
 		},
 		watch: {
 			// images (newCount, oldCount) {
@@ -53,10 +51,11 @@
 			// }, false)
 		},
 		methods: {
-			// ...mapActions({
-			// 	upload: 'upload/uploadImage',
-			// 	reset: 'upload/resetImages',
-			// }),
+			...mapActions({
+				upload: 'upload/uploadImage',
+				reset: 'upload/resetImages',
+				setImage: 'upload/setImage',
+			}),
 			// setFile(file, name = null) {
 			// 	this.resetAll()
 			// 	const reader = new FileReader()
@@ -184,25 +183,25 @@
 </script>
 
 <template>
-	<div :class="{ upload: true, 'images-loaded': images > 0 || file }" ref='upload'>
+	<div :class='{ upload: true }'>
 		<div class='content-box'>
 			<transition name='fade'>
 				<div v-show='file'>
 					<img :src='file' ref='image'/>
 				</div>
 			</transition>
-			<input type='file' id='input-file' class='input-file' @change='selectImage' />
-			<label for='input-file' class='test' ref='file-label'>
-				<span :class="{ 'has-file': file }" v-html="fileName ? `<span class='strong'>${fileName ? fileName : 'None'}</span> selected.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
+			<input type='file' id='input-file' class='input-file' @change='setImage'/>
+			<label for='input-file'>
+				<span v-html="fileName ? `<span class='strong'>${fileName ? fileName : 'None'}</span> selected.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
 			</label>
 		</div>
 		<div class='upload-boxes'>
-			<button class='purple icon upload-btn' :disabled='!file' @click='uploadImage(file)'>
+			<button class='purple icon upload-btn'>
 				<svgicon name='icon/signin' class='icon' :original='false'></svgicon>
 				<span>Upload!</span>
 			</button>
-			<button @click='resetAll()' class='blank purple'>Cancel</button>
-			<button @click='resetImage()' class='blank purple'>Reset All Images</button>
+			<button class='blank purple'>Cancel</button>
+			<button class='blank purple'>Reset All Images</button>
 		</div>
 	</div>
 	<!-- <div :class="{ upload: true, 'images-loaded': images > 0 || file }" ref='upload'>

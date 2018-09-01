@@ -43,6 +43,6 @@
 	<div class='dashboard'>
 		<Navigation />
 		<Upload />
-		<Wall />
+		<!-- <Wall /> -->
 	</div>
 </template>

@@ -2,7 +2,8 @@ import actions from './actions'
 import mutations from './mutations'
 
 const state = {
-	file: null
+	file: null,
+	fileName: null
 }
 
 export default {
