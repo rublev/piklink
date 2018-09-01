@@ -38,10 +38,16 @@ export const resetImages = async ({ dispatch }) => {
 	dispatch('user/setupUser', {}, { root: true })
 }
 
-export const setImage = async ({ commit }, event) => {
+export const setImage = async ({ commit, dispatch }, event) => {
 	const image = event.target.files[0]
 	const { name } = image
 	const fileBase64 = await getBase64(image)
+	dispatch('notifications/showNotification', {
+		show: true,
+		type: 'success',
+		message: `${name} uploaded!`,
+		duration: 5000
+	}, { root: true })
 	commit('SET_IMAGE', { image: fileBase64, name })
 }
 

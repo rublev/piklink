@@ -2,11 +2,16 @@
 
 <script>
 
+	import Notification from '@/components/Navigation/Navigation'
+
 	import { mapState, mapActions } from 'vuex'
 	import md5 from 'md5'
 
 	export default {
 		name: 'upload',
+		components: {
+			Notification
+		},
 		computed: {
 			...mapState({
 				// images: state => state.wall.images.length,
