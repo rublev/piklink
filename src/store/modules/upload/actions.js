@@ -12,9 +12,16 @@ const getBase64 = file => {
 	})
 }
 
+export const onPaste = async ({ dispatch }, event) => {
+	const item = (event.clipboardData  || event.originalEvent.clipboardData).items
+	const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
+	if (image) dispatch('setImage', { image, name: 'pasted image', type: 'paste' })
+}
+
 export const uploadImage = async ({ dispatch, rootState }, image) => {
 	dispatch('user/loading', true, { root: true })
 	await delay(1000)
+	dispatch('cancelImage')
 	const path = 'images/' + md5(image)
 	try {
 		await blockstack.putFile(path, image) // Can omit this declaration cuz i dont think fileUrl is used.
@@ -73,4 +80,5 @@ export default {
 	resetAccountImages,
 	cancelImage,
 	setImage,
+	onPaste,
 }

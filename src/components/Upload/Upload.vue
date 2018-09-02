@@ -36,9 +36,10 @@
 				{ el: this.$refs['content-box'] },
 			]
 			this.$smoothReflow(options)
-			// document.addEventListener('dragenter', function( event ) {
-			// 	refs['file-label'].classList.add('drag')
-			// }, false)
+			document.addEventListener('dragenter', function( event ) {
+				// add class to upload to highlight drag
+				// refs['file-label'].classList.add('drag')
+			}, false)
 			// document.addEventListener('drop', function( event ) {
 			// 	event.preventDefault();
 			// 	refs['file-label'].classList.add('drag')
@@ -57,6 +58,7 @@
 				resetAccountImages: 'upload/resetAccountImages',
 				setImage: 'upload/setImage',
 				cancelImage: 'upload/cancelImage',
+				onPaste: 'upload/onPaste',
 			}),
 			// setFile(file, name = null) {
 			// 	this.resetAccountImages()
@@ -73,12 +75,11 @@
 			// 	this.setFile(event.target.files[0], event.target.value.split( '\\' ).pop())
 			// 	this.$refs['file-label'].classList.add('drag')
 			// },
-			onPaste(event) {
-				const item = (event.clipboardData  || event.originalEvent.clipboardData).items
-				const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
-				if (image) this.setImage({ image, name: 'pasted image', type: 'paste' })
-			// 	this.$refs['file-label'].classList.add('drag')
-			},
+			// onPaste(event) {
+			// 	const item = (event.clipboardData  || event.originalEvent.clipboardData).items
+			// 	const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
+			// 	if (image) this.setImage({ image, name: 'pasted image', type: 'paste' })
+			// },
 			// resetAccountImages() {
 			// 	this.imageName = null
 			// 	this.file = null
@@ -192,7 +193,7 @@
 		<div class='content-box' ref='content-box' :class='{ image, show: !image }'>
 			<!-- <input type='file' id='input-file' class='input-file' @change='setImage'/>
 			<label for='input-file'>
-				<span v-html="imageName ? `<span class='strong'>${imageName ? imageName : 'None'}</span>.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
+				<span v-html="imageName ? `<span class='strong'>${imageName ? imageName : 'None'}</span>.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard.`"></span>
 			</label> -->
 			<div v-if='!image' class='slogan'>
 				<span class='strong'>Click</span>,
