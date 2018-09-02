@@ -1,7 +1,7 @@
 import md5 from 'md5'
 import * as blockstack from 'blockstack'
 import moment from 'moment'
-import { delay } from '@/utils'
+import { delay, uuidv4 } from '@/utils'
 
 const getBase64 = file => {
 	return new Promise((resolve, reject) => {
@@ -35,7 +35,7 @@ export const uploadImage = async ({ dispatch, rootState }, image) => {
 		const rootStateIndex = _.cloneDeep(rootState.wall.index)
 		const index =  {
 			...rootStateIndex,
-			images: [{ path, created }, ...rootStateIndex.images]
+			images: [{ path, created, id: uuidv4() }, ...rootStateIndex.images]
 		}
 		const images = [image, ...rootState.wall.images]
 		await blockstack.putFile('index.json', JSON.stringify(index))
