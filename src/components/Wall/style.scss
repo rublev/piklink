@@ -2,7 +2,7 @@
 @import '~@/containers/App/styles/shared/type';
 @import '~include-media';
 
-/* layout
+/* wall
 ************************************************/
 	.wall {
 		display: flex;
@@ -28,30 +28,35 @@
 				display: flex;
 				width: 100%;
 				flex-direction: column;
-				> .item {
-					background: $white;
-					flex: 1 0 auto;
-					max-width: calc(100% - 60px);
-					align-self: flex-start;
-					flex-grow: 1;
-					position: relative;
-					overflow: hidden;
-					margin: 30px 30px 0;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					width: 100%;
-					border-radius: 4px;
-					> img {
-						position: absolute;
-					}
-				}
 			}
 		}
 	}
 
+	/* item
+	************************************************/
+		a.item {
+			background: $white;
+			flex: 1 0 auto;
+			max-width: calc(100% - 60px);
+			align-self: flex-start;
+			flex-grow: 1;
+			position: relative;
+			overflow: hidden;
+			margin: 30px 30px 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			border-radius: 4px;
+			opacity: 1;
+			> img {
+				position: absolute;
+			}
+		}
+
 @include media('>=760px') {
-	/* layout
+
+	/* wall
 	************************************************/
 		.wall {
 			display: flex;
@@ -63,12 +68,15 @@
 				padding: 0 20px;
 				> .row {
 					flex-direction: row;
-					> .item {
-						flex: 1 0 calc(25% - 40px);
-						max-width: calc(25% - 40px);
-						margin: 40px 20px 0px;
-					}
 				}
 			}
 		}
+
+		/* item
+		************************************************/
+			a.item {
+				flex: 1 0 calc(25% - 40px);
+				max-width: calc(25% - 40px);
+				margin: 40px 20px 0px;
+			}
 }

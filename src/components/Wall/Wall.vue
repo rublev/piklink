@@ -59,6 +59,9 @@
 					})
 				}
 			},
+			imageModal() {
+				console.log('image modal')
+			}
 		},
 	}
 
@@ -68,9 +71,9 @@
 	<div class='wall' ref='wall'>
 		<div v-show='images != null' class='wall-container'>
 			<div class='row' v-for='set in images'>
-				<div class='item' v-for='image in set' ref='item'>
+				<a class='item' v-for='image in set' ref='item' @click='imageModal'>
 					<img :src='image' ref='item-image'/>
-				</div>
+				</a>
 			</div>
 		</div>
 	</div>
