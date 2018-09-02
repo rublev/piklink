@@ -30,9 +30,7 @@
 				flex-direction: column;
 				> .item {
 					background: $white;
-					// flex: 1 0 calc(33% - 60px);
 					flex: 1 0 auto;
-					// max-width: calc(33% - 60px);
 					max-width: calc(100% - 60px);
 					align-self: flex-start;
 					flex-grow: 1;
@@ -45,9 +43,6 @@
 					width: 100%;
 					border-radius: 4px;
 					> img {
-						// width: 100%;
-						// min-width: 100%;
-						// min-height: 100%;
 						position: absolute;
 					}
 				}
@@ -61,42 +56,17 @@
 		.wall {
 			display: flex;
 			flex-direction: column;
-			// background: $purple;
-			// padding: 0 10px 10px;
 			align-items: center;
 			justify-content: center;
-			// flex-grow: 1;
-			// position: relative;
-			// max-width: $container-width;
-			> header {
-				// padding: 20px 0;
-				// color: $white;
-			}
 			.wall-container {
 				max-width: $container-width;
-				// display: flex;
-				// flex-direction: column;
-				// align-items: center;
-				// flex-grow: 1;
-				// width: 100%;
 				padding: 0 20px;
 				> .row {
-					// display: flex;
-					// width: 100%;
 					flex-direction: row;
 					> .item {
-						// background: $white;
 						flex: 1 0 calc(25% - 40px);
 						max-width: calc(25% - 40px);
-						// align-self: flex-start;
-						// flex-grow: 1;
-						// position: relative;
-						// overflow: hidden;
 						margin: 40px 20px 0px;
-						// border-radius: 8px;
-						// display: flex;
-						// align-items: center;
-						// justify-content: center;
 					}
 				}
 			}

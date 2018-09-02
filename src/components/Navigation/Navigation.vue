@@ -57,16 +57,6 @@
 							<router-link to='/dashboard' exact @click.native='toggleMenu()'>
 								Dashboard
 							</router-link>
-						<!-- </li>
-						<li>
-							<router-link to='/about' @click.native='toggleMenu()'>
-								About
-							</router-link>
-						</li>
-						<li>
-							<router-link to='/contact' @click.native='toggleMenu()'>
-								Contact
-							</router-link> -->
 						</li>
 						<li class='blank'></li>
 						<li class='user'>
@@ -95,16 +85,6 @@
 							Dashboard
 						</router-link>
 					</li>
-					<!-- <li>
-						<router-link to='/about'>
-							About
-						</router-link>
-					</li>
-					<li>
-						<router-link to='/contact'>
-							Contact
-						</router-link>
-					</li> -->
 					<li class='blank'></li>
 					</li>
 					<li class='user'>
