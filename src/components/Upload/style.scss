@@ -5,21 +5,29 @@
 /* layout
 ************************************************/
 	.upload {
-		border: 1px solid red;
 		// display: flex;
 		// align-items: center;
 		// justify-content: space-between;
 		// flex-direction: column;
 		overflow: hidden;
 		// position: relative;
-		transition: all $duration * 2 $bezier;
+		// transition: all $duration * 20 $bezier;
 		// background: $white;
 		// padding: 50px;
 		position: relative;
+		border-bottom: 2px solid #fafafa;
+		&.no-images {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
 		&:hover {
 			// cursor: pointer;
 		}
-		&.images-loaded {
+		&.image {
+			border: none;
 		}
 		&:before {
 			// position: absolute;
@@ -30,22 +38,20 @@
 			// top: 0;
 			// bottom: -5px;
 			// content: ' ';
-			// z-index: 5;
-			// cursor: pointer;
-			// background: rgba($white, 0.85);
+			// z-index: 1;
+			// background: rgba($white, 0.15);
 		}
 		&:after {
-			// position: absolute;
-			// height: 100%;
-			// width: 100%;
-			// left: 0;
-			// right: 0;
-			// top: 0;
-			// bottom: -5px;
-			// background: linear-gradient(to bottom, rgba($purple, 0.10) 0%, rgba($white, .55) 80%);
-			// content: ' ';
-			// z-index: 6;
-			// cursor: pointer;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: -5px;
+			background: linear-gradient(to bottom, rgba($purple, 0.10) 0%, rgba($white, 1) 98%);
+			content: ' ';
+			z-index: 2;
 		}
 	}
 
@@ -62,7 +68,7 @@
 				min-width: 110%;
 				min-height: 110%;
 				height: auto;
-				filter: blur(10px);
+				filter: blur(3px);
 			}
 		}
 
@@ -85,10 +91,8 @@
 				z-index: 2;
 				// opacity: 1;
 				transition: all $duration*2 $bezier;
-				// transition-delay: 3s;
 				&.image {
 					opacity: 0;
-					// transition-delay: 3s;
 				}
 				&.show {
 					opacity: 1;
@@ -99,6 +103,14 @@
 					line-height: 30px;
 					text-align: center;
 					color: darken($purple, 10%);
+				}
+			}
+
+			@include media('>=600px') {
+				.content-box {
+					> .slogan {
+						font-size: 22px;
+					}
 				}
 			}
 
@@ -202,26 +214,15 @@
 				> .cancel-container {
 					display: flex;
 					margin-top: 20px;
+					flex-direction: column;
 				}
 			}
 
-			@include media('>=600px') {
+			@include media('>=500px') {
 				.upload-boxes {
-					// justify-content: center;
-					// flex-direction: row;
-					> button {
-					}
-				}
-			}
-
-			@include media('>=desktop') {
-				.upload {
-					// display: flex;
-					&:hover {
-					}
-					&.images-loaded {
-						> .upload-boxes {
-						}
+					padding: 100px;
+					> .cancel-container {
+						flex-direction: row;
 					}
 				}
 			}

@@ -16,41 +16,32 @@
 		},
 		computed: {
 			...mapState({
-				// images: state => state.wall.images.length,
-				// loading: state => state.user.loading
+				noImages: state => state.wall.images.length === 0,
 				image: state => state.upload.image,
-				imageName: state => state.upload.imageName
+				imageName: state => state.upload.imageName,
+				drag: state => state.upload.drag,
 			})
 		},
 		beforeDestory () {
 			window.removeEventListener('paste', this.onPaste)
-			// window.removeEventListener('dragenter')
-			// window.removeEventListener('drop')
-			// window.removeEventListener('dragover')
+			window.removeEventListener('drop')
+			window.removeEventListener('dragover')
 		},
 		mounted () {
-			// const refs = this.$refs
-			// const that = this
+			const that = this
 			window.addEventListener('paste', this.onPaste)
 			const options = [
 				{ el: this.$refs['content-box'] },
+				// { el: this.$refs['upload'] },
 			]
 			this.$smoothReflow(options)
-			document.addEventListener('dragenter', function( event ) {
-				// add class to upload to highlight drag
-				// refs['file-label'].classList.add('drag')
+			window.addEventListener('drop', event => {
+				event.preventDefault()
+				this.dropImage(event)
 			}, false)
-			// document.addEventListener('drop', function( event ) {
-			// 	event.preventDefault();
-			// 	refs['file-label'].classList.add('drag')
-			// 	that.setFile(event.dataTransfer.items[0].getAsFile(), event.dataTransfer.items[0].getAsFile().name)
-			// }, false)
-			// document.addEventListener('dragover', function( event ) {
-			// 	event.preventDefault();
-			// 	if (event.target.parentNode.toString() == '[object HTMLDocument]') {
-			// 		refs['file-label'].classList.remove('drag')
-			// 	}
-			// }, false)
+			window.addEventListener('dragover', event => {
+				event.preventDefault()
+			}, false)
 		},
 		methods: {
 			...mapActions({
@@ -59,6 +50,7 @@
 				setImage: 'upload/setImage',
 				cancelImage: 'upload/cancelImage',
 				onPaste: 'upload/onPaste',
+				dropImage: 'upload/dropImage',
 			}),
 			// setFile(file, name = null) {
 			// 	this.resetAccountImages()
@@ -129,12 +121,12 @@
 				refs['file-label'].classList.add('drag')
 			}, false)
 			document.addEventListener('drop', function( event ) {
-				event.preventDefault();
+				event.preventDefault()
 				refs['file-label'].classList.add('drag')
 				that.setFile(event.dataTransfer.items[0].getAsFile(), event.dataTransfer.items[0].getAsFile().name)
 			}, false)
 			document.addEventListener('dragover', function( event ) {
-				event.preventDefault();
+				event.preventDefault()
 				if (event.target.parentNode.toString() == '[object HTMLDocument]') {
 					refs['file-label'].classList.remove('drag')
 				}
@@ -186,7 +178,7 @@
 </script>
 
 <template>
-	<div :class='{ upload: true }' ref='upload'>
+	<div :class="{ upload: true, drag, image, 'no-images': noImages && !image }" ref='upload'>
 		<transition name='fade'>
 			<img v-show='image' :src='image' ref='image' class='image-file'/>
 		</transition>

@@ -8,7 +8,6 @@
 		display: flex;
 		flex-direction: column;
 		background: $white;
-		padding: 0 10px 10px;
 		align-items: center;
 		flex-grow: 1;
 		position: relative;
@@ -24,6 +23,7 @@
 			align-items: center;
 			flex-grow: 1;
 			width: 100%;
+			margin-bottom: 30px;
 			> .row {
 				display: flex;
 				width: 100%;
@@ -38,11 +38,12 @@
 					flex-grow: 1;
 					position: relative;
 					overflow: hidden;
-					margin: 0 30px 30px;
+					margin: 30px 30px 0;
 					display: flex;
 					align-items: center;
 					justify-content: center;
 					width: 100%;
+					border-radius: 4px;
 					> img {
 						// width: 100%;
 						// min-width: 100%;
@@ -54,7 +55,7 @@
 		}
 	}
 
-@include media('>=600px') {
+@include media('>=760px') {
 	/* layout
 	************************************************/
 		.wall {
@@ -78,19 +79,20 @@
 				// align-items: center;
 				// flex-grow: 1;
 				// width: 100%;
+				padding: 0 20px;
 				> .row {
 					// display: flex;
 					// width: 100%;
 					flex-direction: row;
 					> .item {
 						// background: $white;
-						flex: 1 0 calc(25% - 20px);
-						max-width: calc(25% - 20px);
+						flex: 1 0 calc(25% - 40px);
+						max-width: calc(25% - 40px);
 						// align-self: flex-start;
 						// flex-grow: 1;
 						// position: relative;
 						// overflow: hidden;
-						margin: 0 20px 40px;
+						margin: 40px 20px 0px;
 						// border-radius: 8px;
 						// display: flex;
 						// align-items: center;

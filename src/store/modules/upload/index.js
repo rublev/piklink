@@ -3,7 +3,8 @@ import mutations from './mutations'
 
 const state = {
 	image: null,
-	imageName: null
+	imageName: null,
+	drag: false,
 }
 
 export default {

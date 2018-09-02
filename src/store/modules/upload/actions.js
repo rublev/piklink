@@ -12,6 +12,12 @@ const getBase64 = file => {
 	})
 }
 
+export const dropImage = ({ dispatch }, event) => {
+	const image = event.dataTransfer.items[0].getAsFile()
+	const name = image.name
+	if (image) dispatch('setImage', { image, name, type: 'drop' })
+}
+
 export const onPaste = async ({ dispatch }, event) => {
 	const item = (event.clipboardData  || event.originalEvent.clipboardData).items
 	const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
@@ -58,6 +64,7 @@ export const setImage = async ({ commit, dispatch }, data) => {
 	let name = null
 	switch(data.type) {
 		case 'paste':
+		case 'drop':
 			image = data.image
 			name = data.name
 			break
@@ -81,4 +88,5 @@ export default {
 	cancelImage,
 	setImage,
 	onPaste,
+	dropImage,
 }

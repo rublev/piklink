@@ -14,8 +14,18 @@ const CANCEL_IMAGE = (state) => {
 	state.imageName = null
 }
 
+const DRAG_ENTER = (state) => {
+	state.drag = true
+}
+
+const DRAG_OVER = (state) => {
+	state.drag = false
+}
+
 export default {
 	SET_IMAGE,
 	RESET_IMAGES,
 	CANCEL_IMAGE,
+	DRAG_ENTER,
+	DRAG_OVER,
 }
