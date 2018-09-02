@@ -24,22 +24,18 @@ export const onPaste = async ({ dispatch }, event) => {
 	if (image) dispatch('setImage', { image, name: 'pasted image', type: 'paste' })
 }
 
-export const uploadImage = async ({ dispatch, rootState }, image) => {
+export const uploadImage = async ({ dispatch, rootState }, imageData) => {
 	dispatch('user/loading', true, { root: true })
 	await delay(1000)
 	dispatch('cancelImage')
-	const path = 'images/' + md5(image)
+	const path = 'images/' + md5(imageData)
+	const created = moment().toISOString()
+	const wall = _.cloneDeep(rootState.wall)
+	const images = [ ...wall.images, { path, created, id: uuidv4(), data: imageData } ]
 	try {
-		await blockstack.putFile(path, image) // Can omit this declaration cuz i dont think fileUrl is used.
-		const created = moment().toISOString()
-		const rootStateIndex = _.cloneDeep(rootState.wall.index)
-		const index =  {
-			...rootStateIndex,
-			images: [{ path, created, id: uuidv4() }, ...rootStateIndex.images]
-		}
-		const images = [image, ...rootState.wall.images]
-		await blockstack.putFile('index.json', JSON.stringify(index))
-		dispatch('wall/updateAllImages', { index, images }, { root: true })
+		await blockstack.putFile(path, imageData)
+		await blockstack.putFile('index.json', JSON.stringify(images))
+		dispatch('wall/updateImages', images, { root: true })
 		dispatch('user/loading', false, { root: true })
 	} catch(e) {
 		console.error(e)

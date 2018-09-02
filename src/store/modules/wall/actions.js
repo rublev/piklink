@@ -1,7 +1,7 @@
-export const updateAllImages = ({ commit }, imagesObj) => {
-	commit('UPDATE_ALL_IMAGES', imagesObj)
+export const updateImages = ({ commit }, images) => {
+	commit('UPDATE_IMAGES', images)
 }
 
 export default {
-	updateAllImages,
+	updateImages,
 }
