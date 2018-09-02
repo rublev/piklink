@@ -13,7 +13,9 @@ button {
 	text-align: center;
 	line-height: 50px;
 	text-decoration: none;
-	white-space: nowrap;
+	overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
 	cursor: pointer;
 	color: $black;
 	background: $background;
@@ -25,6 +27,7 @@ button {
 	box-shadow: $shadow-default;
 	border: none;
 	opacity: 1;
+	overflow: hidden;
 	&:hover {
 		box-shadow: $shadow-hover;
 		cursor: pointer;
@@ -142,6 +145,13 @@ button {
 		&.purple {
 			color: $purple;
 			@include button-icon-color($purple);
+		}
+		&.disabled,
+		&:disabled {
+			// background: lighten($light-gray, 20%);
+			color: lighten($gray, 20%);
+			@include button-icon-color(lighten($gray, 20%));
+			cursor: not-allowed;
 		}
 	}
 }

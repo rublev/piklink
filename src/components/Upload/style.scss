@@ -10,10 +10,12 @@
 		// align-items: center;
 		// justify-content: space-between;
 		// flex-direction: column;
-		// overflow: hidden;
+		overflow: hidden;
 		// position: relative;
-		// transition: all $duration * 2 $bezier;
+		transition: all $duration * 2 $bezier;
 		// background: $white;
+		// padding: 50px;
+		position: relative;
 		&:hover {
 			// cursor: pointer;
 		}
@@ -47,6 +49,23 @@
 		}
 	}
 
+	/* image bg
+	************************************************/
+		.upload {
+			> img.image-file {
+				position: absolute;
+				width: auto;
+				top: 60%;
+				left: 60%;
+				transform: translate(-60%, -60%);
+				opacity: .5;
+				min-width: 110%;
+				min-height: 110%;
+				height: auto;
+				filter: blur(10px);
+			}
+		}
+
 	/* inputs
 	************************************************/
 		.upload {
@@ -61,18 +80,11 @@
 			.content-box {
 				// width: 100%;
 				// height: 100%;
-				// position: relative;
+				position: relative;
 				// transition: all $duration $bezier;
+				z-index: 2;
 				> div {
-					> img {
-						position: absolute;
-						z-index: 2;
-						width: 120%;
-						height: auto;
-						top: 50%;
-						left: 50%;
-						transform: translate(-50%, -50%);
-					}
+					padding: 50px 50px 0;
 				}
 			}
 
@@ -158,13 +170,24 @@
 			.upload-boxes {
 				// z-index: 7;
 				// bottom: 50px;
-				// flex-direction: column;
-				// position: absolute;
+				flex-direction: column;
+				position: relative;
 				// right: 50px;
 				// left: 50px;
 				// width: calc(100% - 100px);
-				// display: flex;
+				display: flex;
 				// flex-wrap: wrap;
+				align-items: center;
+				padding: 50px;
+				z-index: 3;
+				> .upload-container {
+					> label.button {
+						// margin: 0 30px;
+					}
+				}
+				> .cancel-container {
+					display: flex;
+				}
 			}
 
 			@include media('>=600px') {

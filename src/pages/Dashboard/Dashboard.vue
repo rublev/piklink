@@ -7,6 +7,7 @@
 	import Navigation from '@/components/Navigation/Navigation'
 	import Upload from '@/components/Upload/Upload'
 	import Wall from '@/components/Wall/Wall'
+	import Loader from '@/components/Loader/Loader'
 
 	export default {
 		name: 'dashboard',
@@ -14,6 +15,7 @@
 			Navigation,
 			Upload,
 			Wall,
+			Loader,
 		},
 		mounted() {
 			const blockstack = this.blockstack
@@ -26,6 +28,11 @@
 			} else {
 				this.$router.push('/')
 			}
+		},
+		computed: {
+			...mapState({
+				loading: state => state.user.loading,
+			}),
 		},
 		methods: {
 			...mapActions({
@@ -41,8 +48,11 @@
 
 <template>
 	<div class='dashboard'>
+		<transition name='fade1'>
+			<Loader ref='loader' v-show='loading' />
+		</transition>
 		<Navigation />
 		<Upload />
-		<!-- <Wall /> -->
+		<Wall />
 	</div>
 </template>

@@ -5,14 +5,9 @@
 	import { mapState } from 'vuex'
 	import smoothReflow from 'vue-smooth-reflow'
 
-	import Loader from '@/components/Loader/Loader'
-
 	export default {
 		name: 'wall',
 		mixins: [ smoothReflow ],
-		components: {
-			Loader,
-		},
 		beforeDestory () {
 			window.removeEventListener('resize', this.resize)
 		},
@@ -95,9 +90,6 @@
 		<header v-else>
 			Upload some images!
 		</header>
-		<transition name='fade1'>
-			<Loader ref='loader' v-show='loading' />
-		</transition>
 		<transition name='fade'>
 			<div v-show='images != null' class='wall-container'>
 				<div class='row' v-for='set in images'>

@@ -8,8 +8,8 @@
 	position: fixed;
 	right: 0;
 	left: 0;
-	top: -58px;
-	height: 90px;
+	top: -90px;
+	min-height: 90px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -52,7 +52,6 @@
 		margin: 0;
 	}
 	> .close {
-		color: $gray;
 		padding: 24px;
 		position: absolute;
 		right: 0;
@@ -61,7 +60,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: #fff;
+		> .icon {
+			color: $white;
+			font-size: 16px;
+			line-height: 0px;
+		}
 		&:hover {
 			cursor: pointer;
 		}

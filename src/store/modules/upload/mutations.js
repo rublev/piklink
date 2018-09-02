@@ -4,9 +4,9 @@ const RESET_IMAGES = (state) => {
 }
 
 const SET_IMAGE = (state, payload) => {
-	const { file, name } = payload
-	state.file = file
-	state.fileName = name
+	const { image, name } = payload
+	state.image = image
+	state.imageName = name
 }
 
 export default {

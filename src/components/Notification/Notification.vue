@@ -7,7 +7,9 @@
 	export default {
 		name: 'notification',
 		methods: {
-			...mapActions(['notifications/closeNotification']),
+			...mapActions({
+				closeNotification: 'notifications/closeNotification'
+			}),
 		},
 		computed: mapState({
 			'show': state => state.notifications.show,
@@ -25,7 +27,7 @@
 		</div>
 		<p v-html='message' />
 		<div class='close' @click='closeNotification()'>
-			<i class='ion-close' />
+			<ion-icon class='icon' name='close' />
 		</div>
 	</div>
 </template>

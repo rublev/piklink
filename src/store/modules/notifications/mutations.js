@@ -5,8 +5,6 @@ const SHOW_NOTIF = (state, notifOptions) => {
 const CLOSE_NOTIF = (state) => {
 	state = Object.assign(state, {
 		show: false,
-		type: '',
-		message: '',
 		duration: 5000,
 	})
 }

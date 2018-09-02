@@ -6,9 +6,11 @@
 
 	import { mapState, mapActions } from 'vuex'
 	import md5 from 'md5'
+	import smoothReflow from 'vue-smooth-reflow'
 
 	export default {
 		name: 'upload',
+		mixins: [ smoothReflow ],
 		components: {
 			Notification
 		},
@@ -16,8 +18,8 @@
 			...mapState({
 				// images: state => state.wall.images.length,
 				// loading: state => state.user.loading
-				file: state => state.upload.file,
-				fileName: state => state.upload.fileName
+				image: state => state.upload.image,
+				imageName: state => state.upload.imageName
 			})
 		},
 		watch: {
@@ -29,9 +31,16 @@
 			// file () {
 			// 	console.log(this.$refs['image'].clientHeight)
 			// },
+			image () {
+				this.$nextTick(() => {
+					this.$nextTick(() => {
+						this.matchHeight('image', this.$refs['upload'].clientWidth)
+					})
+				})
+			},
 		},
 		beforeDestory () {
-			// window.removeEventListener('paste', this.onPaste)
+			window.removeEventListener('paste', this.onPaste)
 			// window.removeEventListener('dragenter')
 			// window.removeEventListener('drop')
 			// window.removeEventListener('dragover')
@@ -39,7 +48,12 @@
 		mounted () {
 			// const refs = this.$refs
 			// const that = this
-			// window.addEventListener('paste', this.onPaste)
+			window.addEventListener('paste', this.onPaste)
+			const options = [
+				{ el: this.$refs['upload'] },
+				{ el: this.$refs['upppp1'] },
+			]
+			this.$smoothReflow(options)
 			// document.addEventListener('dragenter', function( event ) {
 			// 	refs['file-label'].classList.add('drag')
 			// }, false)
@@ -61,12 +75,16 @@
 				reset: 'upload/resetImages',
 				setImage: 'upload/setImage',
 			}),
+			matchHeight(ref, height) {
+				console.log(height)
+				// this.$refs[ref].style.height = `${height}px`
+			},
 			// setFile(file, name = null) {
 			// 	this.resetAll()
 			// 	const reader = new FileReader()
 			// 	reader.onload = event => {
 			// 		this.file = event.target.result
-			// 		this.fileName = name
+			// 		this.imageName = name
 			// 		console.log(this.$refs['image'].clientHeight)
 			// 	}
 			// 	reader.readAsDataURL(file)
@@ -76,14 +94,14 @@
 			// 	this.setFile(event.target.files[0], event.target.value.split( '\\' ).pop())
 			// 	this.$refs['file-label'].classList.add('drag')
 			// },
-			// onPaste(event) {
-			// 	const item = (event.clipboardData  || event.originalEvent.clipboardData).items
-			// 	const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
-			// 	if (image) this.setFile(image, 'Pasted image')
+			onPaste(event) {
+				const item = (event.clipboardData  || event.originalEvent.clipboardData).items
+				const image = item[0].type.indexOf('image') === 0 ? item[0].getAsFile() : null
+				if (image) this.setImage({ image, name: 'pasted image', type: 'paste' })
 			// 	this.$refs['file-label'].classList.add('drag')
-			// },
+			},
 			// resetAll() {
-			// 	this.fileName = null
+			// 	this.imageName = null
 			// 	this.file = null
 			// 	this.$refs['file-label'].classList.remove('drag')
 			// },
@@ -99,7 +117,7 @@
 		/*
 		data: () => ({
 			file: null,
-			fileName: null,
+			imageName: null,
 		}),
 		computed: {
 			...mapState({
@@ -152,7 +170,7 @@
 				const reader = new FileReader()
 				reader.onload = event => {
 					this.file = event.target.result
-					this.fileName = name
+					this.imageName = name
 					console.log(this.$refs['image'].clientHeight)
 				}
 				reader.readAsDataURL(file)
@@ -169,7 +187,7 @@
 				this.$refs['file-label'].classList.add('drag')
 			},
 			resetAll() {
-				this.fileName = null
+				this.imageName = null
 				this.file = null
 				this.$refs['file-label'].classList.remove('drag')
 			},
@@ -188,25 +206,35 @@
 </script>
 
 <template>
-	<div :class='{ upload: true }'>
-		<div class='content-box'>
-			<transition name='fade'>
-				<div v-show='file'>
-					<img :src='file' ref='image'/>
-				</div>
-			</transition>
-			<input type='file' id='input-file' class='input-file' @change='setImage'/>
-			<label for='input-file'>
-				<span v-html="fileName ? `<span class='strong'>${fileName ? fileName : 'None'}</span> selected.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
-			</label>
-		</div>
+	<div :class='{ upload: true }' ref='upload'>
+		<transition name='fade'>
+			<img v-show='image' :src='image' ref='image' class='image-file'/>
+		</transition>
+		<transition name='fade'>
+			<div class='content-box' ref='upppp1'>
+				<!-- <input type='file' id='input-file' class='input-file' @change='setImage'/>
+				<label for='input-file'>
+					<span v-html="imageName ? `<span class='strong'>${imageName ? imageName : 'None'}</span>.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
+				</label> -->
+				<div v-if='!image'>upload a file!</div>
+			</div>
+		</transition>
 		<div class='upload-boxes'>
-			<button class='purple icon upload-btn'>
+			<!-- <button class='purple icon upload-btn' @click='uploadImage(file)'>
 				<svgicon name='icon/signin' class='icon' :original='false'></svgicon>
 				<span>Upload!</span>
-			</button>
-			<button class='blank purple'>Cancel</button>
-			<button class='blank purple'>Reset All Images</button>
+			</button> -->
+			<div class='upload-container'>
+				<input type='file' id='input-file' class='input-file' @change='setImage'/>
+				<label :class='{ button: true, purple: !image, green: image }' for='input-file'>
+					<span v-html="imageName ? `Upload <span class='strong'>${imageName ? imageName : 'None'}</span>` : `Upload`"></span>
+				</label>
+			</div>
+			<div class='cancel-container'>
+				<button class='blank purple'>Cancel</button>
+				<button class='blank' disabled>or</button>
+				<button class='blank purple'>Reset All Images</button>
+			</div>
 		</div>
 	</div>
 	<!-- <div :class="{ upload: true, 'images-loaded': images > 0 || file }" ref='upload'>
@@ -218,7 +246,7 @@
 			</transition>
 			<input type='file' id='input-file' class='input-file' @change='selectImage' />
 			<label for='input-file' class='test' ref='file-label'>
-				<span :class="{ 'has-file': file }" v-html="fileName ? `<span class='strong'>${fileName ? fileName : 'None'}</span> selected.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
+				<span :class="{ 'has-file': file }" v-html="imageName ? `<span class='strong'>${imageName ? imageName : 'None'}</span> selected.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
 			</label>
 		</div>
 		<div class='upload-boxes'>
