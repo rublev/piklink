@@ -4,9 +4,9 @@
 /* notification
 ************************************************/
 	.notification {
-		color: #fff;
+		color: $off-black;
 		width: 100%;
-		background: #fff;
+		background: $white;
 		position: fixed;
 		right: 0;
 		left: 0;
@@ -21,14 +21,15 @@
 		transition: all $duration * 1.5 $bezier;
 		z-index: 4;
 		padding: 16px;
-		background-color: $off-black;
 		z-index: 15;
+		box-shadow: 0 2px 6px rgba(0, 21, 64, 0.02), 0 10px 20px rgba(0, 21, 64, 0.02);
 		> .badge {
 			padding: 2px 8px;
 			border-radius: $border-radius / 2;
 			font-size: 11px;
 			text-transform: uppercase;
 			font-weight: 800;
+			color: $white;
 		}
 		&.show { opacity: 1; visibility: visible; top: 0;}
 		&.error {
@@ -64,7 +65,7 @@
 			align-items: center;
 			justify-content: center;
 			> .icon {
-				color: $white;
+				color: $off-black;
 				font-size: 16px;
 				line-height: 0px;
 			}
