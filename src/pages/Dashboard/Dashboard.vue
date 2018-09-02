@@ -8,6 +8,7 @@
 	import Upload from '@/components/Upload/Upload'
 	import Wall from '@/components/Wall/Wall'
 	import Loader from '@/components/Loader/Loader'
+	import Modal from '@/components/Modal/Modal'
 
 	export default {
 		name: 'dashboard',
@@ -16,6 +17,7 @@
 			Upload,
 			Wall,
 			Loader,
+			Modal,
 		},
 		mounted() {
 			const blockstack = this.blockstack
@@ -40,6 +42,9 @@
 			}),
 			signOut () {
 				this.blockstack.signUserOut(window.location.origin)
+			},
+			showModal() {
+				console.log('show modal')
 			}
 		}
 	}
@@ -48,6 +53,9 @@
 
 <template>
 	<div class='dashboard'>
+		<Modal v-if='showModal' ref='modal'>
+			<router-view name='rule'/>
+		</Modal>
 		<transition name='fade-loader'>
 			<Loader ref='loader' v-show='loading' />
 		</transition>
