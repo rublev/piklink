@@ -83,8 +83,22 @@
 				position: relative;
 				// transition: all $duration $bezier;
 				z-index: 2;
-				> div {
+				// opacity: 1;
+				transition: all $duration*2 $bezier;
+				// transition-delay: 3s;
+				&.image {
+					opacity: 0;
+					// transition-delay: 3s;
+				}
+				&.show {
+					opacity: 1;
+					transition-delay: 250ms;
+				}
+				> .slogan {
 					padding: 50px 50px 0;
+					line-height: 30px;
+					text-align: center;
+					color: darken($purple, 10%);
 				}
 			}
 
@@ -187,6 +201,7 @@
 				}
 				> .cancel-container {
 					display: flex;
+					margin-top: 20px;
 				}
 			}
 

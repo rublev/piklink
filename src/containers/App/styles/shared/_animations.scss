@@ -3,16 +3,14 @@
 .fade-enter-active, .fade-leave-active {
 	transition: opacity $duration * 2 $bezier;
 }
-
 .fade-enter, .fade-leave-to {
 	opacity: 0;
 }
 
-.fade1-enter-active, .fade1-leave-active {
-	transition: opacity $duration * 1.5 $bezier;
+.fade-loader-enter-active, .fade-loader-leave-active {
+	transition: opacity $duration * 1 $bezier;
 }
-
-.fade1-enter, .fade1-leave-to {
+.fade-loader-enter, .fade-loader-leave-to {
 	opacity: 0;
 }
 
@@ -27,3 +25,12 @@
   transform: translateX(10px);
   opacity: 0;
 }
+
+/* test animation
+************************************************/
+	.test-fade-enter-active, .test-fade-leave-active {
+		transition: opacity $duration * 15 $bezier;
+	}
+	.test-fade-enter, .test-fade-leave-to {
+		opacity: 0;
+	}

@@ -33,9 +33,16 @@ export const uploadImage = async ({ dispatch, rootState }, image) => {
 	}
 }
 
-export const resetImages = async ({ dispatch }) => {
+export const resetAccountImages = async ({ dispatch }) => {
+	dispatch('user/loading', {}, { root: true })
+	await delay(500)
 	await blockstack.putFile('index.json', JSON.stringify(null))
+	dispatch('cancelImage', { root: true })
 	dispatch('user/setupUser', {}, { root: true })
+}
+
+export const cancelImage = ({ commit }) => {
+	commit('CANCEL_IMAGE')
 }
 
 export const setImage = async ({ commit, dispatch }, data) => {
@@ -63,6 +70,7 @@ export const setImage = async ({ commit, dispatch }, data) => {
 
 export default {
 	uploadImage,
-	resetImages,
+	resetAccountImages,
+	cancelImage,
 	setImage,
 }

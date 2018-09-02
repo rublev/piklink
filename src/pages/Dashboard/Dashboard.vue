@@ -48,7 +48,7 @@
 
 <template>
 	<div class='dashboard'>
-		<transition name='fade1'>
+		<transition name='fade-loader'>
 			<Loader ref='loader' v-show='loading' />
 		</transition>
 		<Navigation />

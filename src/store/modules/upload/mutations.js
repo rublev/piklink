@@ -9,7 +9,13 @@ const SET_IMAGE = (state, payload) => {
 	state.imageName = name
 }
 
+const CANCEL_IMAGE = (state) => {
+	state.image = null
+	state.imageName = null
+}
+
 export default {
 	SET_IMAGE,
 	RESET_IMAGES,
+	CANCEL_IMAGE,
 }

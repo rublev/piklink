@@ -22,23 +22,6 @@
 				imageName: state => state.upload.imageName
 			})
 		},
-		watch: {
-			// images (newCount, oldCount) {
-			// 	if (newCount !== oldCount) {
-			// 		this.file = null
-			// 	}
-			// },
-			// file () {
-			// 	console.log(this.$refs['image'].clientHeight)
-			// },
-			image () {
-				this.$nextTick(() => {
-					this.$nextTick(() => {
-						this.matchHeight('image', this.$refs['upload'].clientWidth)
-					})
-				})
-			},
-		},
 		beforeDestory () {
 			window.removeEventListener('paste', this.onPaste)
 			// window.removeEventListener('dragenter')
@@ -50,8 +33,7 @@
 			// const that = this
 			window.addEventListener('paste', this.onPaste)
 			const options = [
-				{ el: this.$refs['upload'] },
-				{ el: this.$refs['upppp1'] },
+				{ el: this.$refs['content-box'] },
 			]
 			this.$smoothReflow(options)
 			// document.addEventListener('dragenter', function( event ) {
@@ -71,16 +53,13 @@
 		},
 		methods: {
 			...mapActions({
-				upload: 'upload/uploadImage',
-				reset: 'upload/resetImages',
+				uploadImage: 'upload/uploadImage',
+				resetAccountImages: 'upload/resetAccountImages',
 				setImage: 'upload/setImage',
+				cancelImage: 'upload/cancelImage',
 			}),
-			matchHeight(ref, height) {
-				console.log(height)
-				// this.$refs[ref].style.height = `${height}px`
-			},
 			// setFile(file, name = null) {
-			// 	this.resetAll()
+			// 	this.resetAccountImages()
 			// 	const reader = new FileReader()
 			// 	reader.onload = event => {
 			// 		this.file = event.target.result
@@ -100,18 +79,18 @@
 				if (image) this.setImage({ image, name: 'pasted image', type: 'paste' })
 			// 	this.$refs['file-label'].classList.add('drag')
 			},
-			// resetAll() {
+			// resetAccountImages() {
 			// 	this.imageName = null
 			// 	this.file = null
 			// 	this.$refs['file-label'].classList.remove('drag')
 			// },
 			// resetImage() {
-			// 	this.resetAll()
+			// 	this.resetAccountImages()
 			// 	this.reset()
 			// },
 			// uploadImage(file) {
 			// 	this.upload(file)
-			// 	this.resetAll()
+			// 	this.resetAccountImages()
 			// }
 		}
 		/*
@@ -166,7 +145,7 @@
 				reset: 'upload/resetImages',
 			}),
 			setFile(file, name = null) {
-				this.resetAll()
+				this.resetAccountImages()
 				const reader = new FileReader()
 				reader.onload = event => {
 					this.file = event.target.result
@@ -186,18 +165,18 @@
 				if (image) this.setFile(image, 'Pasted image')
 				this.$refs['file-label'].classList.add('drag')
 			},
-			resetAll() {
+			resetAccountImages() {
 				this.imageName = null
 				this.file = null
 				this.$refs['file-label'].classList.remove('drag')
 			},
 			resetImage() {
-				this.resetAll()
+				this.resetAccountImages()
 				this.reset()
 			},
 			uploadImage(file) {
 				this.upload(file)
-				this.resetAll()
+				this.resetAccountImages()
 			}
 		}
 		*/
@@ -210,30 +189,34 @@
 		<transition name='fade'>
 			<img v-show='image' :src='image' ref='image' class='image-file'/>
 		</transition>
-		<transition name='fade'>
-			<div class='content-box' ref='upppp1'>
-				<!-- <input type='file' id='input-file' class='input-file' @change='setImage'/>
-				<label for='input-file'>
-					<span v-html="imageName ? `<span class='strong'>${imageName ? imageName : 'None'}</span>.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
-				</label> -->
-				<div v-if='!image'>upload a file!</div>
+		<div class='content-box' ref='content-box' :class='{ image, show: !image }'>
+			<!-- <input type='file' id='input-file' class='input-file' @change='setImage'/>
+			<label for='input-file'>
+				<span v-html="imageName ? `<span class='strong'>${imageName ? imageName : 'None'}</span>.` : `<span class='strong'>Click</span>, <span class='strong'>drag & drop,</span> or <span class='strong'>paste</span> an image from your clipboard anywhere in this header.`"></span>
+			</label> -->
+			<div v-if='!image' class='slogan'>
+				<span class='strong'>Click</span>,
+				<span class='strong'>drag & drop,</span> or
+				<span class='strong'>paste</span> an image from your clipboard anywhere in this header.
 			</div>
-		</transition>
+		</div>
 		<div class='upload-boxes'>
-			<!-- <button class='purple icon upload-btn' @click='uploadImage(file)'>
-				<svgicon name='icon/signin' class='icon' :original='false'></svgicon>
-				<span>Upload!</span>
-			</button> -->
 			<div class='upload-container'>
 				<input type='file' id='input-file' class='input-file' @change='setImage'/>
-				<label :class='{ button: true, purple: !image, green: image }' for='input-file'>
-					<span v-html="imageName ? `Upload <span class='strong'>${imageName ? imageName : 'None'}</span>` : `Upload`"></span>
+				<label v-if='!image' class='button purple' for='input-file'>
+					<span>Select file!</span>
 				</label>
+				<button v-if='image' class='green icon upload-btn' @click='uploadImage(image)'>
+					<svgicon name='icon/signin' class='icon' :original='false'></svgicon>
+					<span>
+						Upload <span class='strong'>{{ imageName }}</span>
+					</span>
+				</button>
 			</div>
 			<div class='cancel-container'>
-				<button class='blank purple'>Cancel</button>
+				<button @click='cancelImage()' class='blank purple'>Cancel</button>
 				<button class='blank' disabled>or</button>
-				<button class='blank purple'>Reset All Images</button>
+				<button @click='resetAccountImages' class='blank purple'>Reset All Images</button>
 			</div>
 		</div>
 	</div>
@@ -254,7 +237,7 @@
 				<svgicon name='icon/signin' class='icon' :original='false'></svgicon>
 				<span>Upload!</span>
 			</button>
-			<button @click='resetAll()' class='blank purple'>Cancel</button>
+			<button @click='resetAccountImages()' class='blank purple'>Cancel</button>
 			<button @click='resetImage()' class='blank purple'>Reset All Images</button>
 		</div>
 	</div> -->
