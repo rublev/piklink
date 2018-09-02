@@ -25,7 +25,7 @@ export default new Router({
 		},
 		{
 			path: '/dashboard/:id',
-			name: 'Dashboard',
+			name: 'Image',
 			component: Dashboard,
 			meta: {
 				showModal: true
