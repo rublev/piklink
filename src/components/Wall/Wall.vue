@@ -25,7 +25,7 @@
 		},
 		computed: {
 			...mapState({
-				'imagesLength': state => state.wall.index.images.length > 0 ? state.wall.index.images.length: 0,
+				'imagesLength': state => state.wall.images.length > 0 ? state.wall.images.length : 0,
 				'images': state => state.wall.images.length > 0 ? _.chunk(state.wall.images, 4) : [],
 				'loading': state => state.user.loading,
 			}),
@@ -71,8 +71,8 @@
 	<div class='wall' ref='wall'>
 		<div v-show='images != null' class='wall-container'>
 			<div class='row' v-for='set in images'>
-				<a class='item' v-for='image in set' ref='item' @click='imageModal'>
-					<img :src='image' ref='item-image'/>
+				<a class='item' v-for='image in set' ref='item' @click='imageModal' :key='image.id'>
+					<img :src='image.data' ref='item-image'/>
 				</a>
 			</div>
 		</div>

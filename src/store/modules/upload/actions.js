@@ -55,7 +55,6 @@ export const cancelImage = ({ commit }) => {
 }
 
 export const setImage = async ({ commit, dispatch }, data) => {
-	console.log('data.type', data.type)
 	let image = null
 	let name = null
 	switch(data.type) {
