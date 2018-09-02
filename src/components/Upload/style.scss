@@ -111,7 +111,6 @@
 
 			@include media('>=500px') {
 				.upload-boxes {
-					padding: 100px;
 					> .cancel-container {
 						flex-direction: row;
 					}
