@@ -20,7 +20,8 @@
 				'name': state => state.user.profile !== null ? state.user.profile.name() : null,
 				'avatarUrl': state => state.user.profile !== null ? state.user.profile.avatarUrl() : null,
 				'username': state => state.user.data !== null ? (state.user.data.username || state.user.data.identityAddress) : null,
-				'loggedIn': state => state.user.loggedIn
+				'loggedIn': state => state.user.loggedIn,
+				'publicUsername': state => state.public.username,
 			}),
 		},
 		methods: {
@@ -55,13 +56,18 @@
 						<svgicon name='logo/bw' class='logo-full' :original='true'></svgicon>
 						<ion-icon class='close' name='close' @click='toggleMenu()'></ion-icon>
 						<li v-if='loggedIn'>
-							<router-link to='/dashboard' exact @click.native='toggleMenu()'>
+							<router-link to='/dashboard' @click.native='toggleMenu()'>
 								Dashboard
 							</router-link>
 						</li>
 						<li v-else-if='!loggedIn'>
 							<router-link to='/' exact @click.native='toggleMenu()'>
 								Sign In
+							</router-link>
+						</li>
+						<li v-if='loggedIn'>
+							<router-link :to='`/profile/${publicUsername}`' @click.native='toggleMenu()'>
+								Profile
 							</router-link>
 						</li>
 						<li class='blank'></li>
@@ -87,13 +93,18 @@
 				</transition>
 				<ul>
 					<li v-if='loggedIn'>
-						<router-link to='/dashboard' exact>
+						<router-link to='/dashboard'>
 							Dashboard
 						</router-link>
 					</li>
 					<li v-else-if='!loggedIn'>
 						<router-link to='/' exact>
 							Sign In
+						</router-link>
+					</li>
+					<li v-if='loggedIn'>
+						<router-link :to='`/profile/${publicUsername}`'>
+							Profile
 						</router-link>
 					</li>
 					<li class='blank'></li>
