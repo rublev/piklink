@@ -2,7 +2,7 @@
 
 <script>
 
-	import { mapState } from 'vuex'
+	import { mapState, mapActions } from 'vuex'
 	import smoothReflow from 'vue-smooth-reflow'
 
 	export default {
@@ -32,6 +32,14 @@
 		},
 		methods: {
 			// constantly scale height of squares in grid to maintain aspect ratio
+			...mapActions({
+				selectImageForModal: 'wall/selectImageForModal',
+				fetchImage: 'wall/fetchImage',
+			}),
+			showImageModal(id) {
+				this.fetchImage(id)
+				this.$router.push(`dashboard/${id}`)
+			},
 			resize() {
 				if (this.$refs['item'] != null) {
 					this.$refs['item'].map(item => {
@@ -59,9 +67,6 @@
 					})
 				}
 			},
-			imageModal() {
-				console.log('image modal')
-			}
 		},
 	}
 
@@ -71,7 +76,7 @@
 	<div class='wall' ref='wall'>
 		<div v-show='images != null' class='wall-container'>
 			<div class='row' v-for='set in images'>
-				<a class='item' v-for='image in set' ref='item' @click='imageModal' :key='image.id'>
+				<a class='item' v-for='image in set' ref='item' @click='showImageModal(image.id)' :key='image.id'>
 					<img :src='image.data' ref='item-image'/>
 				</a>
 			</div>
