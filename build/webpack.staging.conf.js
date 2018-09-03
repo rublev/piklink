@@ -107,7 +107,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       children: true,
       minChunks: 3
     }),
-
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -116,11 +115,21 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-
-    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../_headers'),
+        to: config.build.assetsRoot,
+      }
+    ]),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../_redirects'),
+        to: config.build.assetsRoot,
+      }
+    ]),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../manifest.json'),
         to: config.build.assetsRoot,
       }
     ]),
