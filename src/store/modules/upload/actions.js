@@ -45,7 +45,7 @@ export const uploadImage = async ({ dispatch, rootState }, imageData) => {
 export const resetAccountImages = async ({ dispatch }) => {
 	dispatch('user/loading', {}, { root: true })
 	await delay(500)
-	await blockstack.putFile('index.json', JSON.stringify(null))
+	await blockstack.putFile('index.json', JSON.stringify(null), { encrypt: false })
 	dispatch('cancelImage', { root: true })
 	// dispatch('user/setupUser', {}, { root: true })
 	dispatch('wall/updateImages', [], { root: true })
