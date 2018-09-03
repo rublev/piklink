@@ -1,5 +1,3 @@
-<style lang='scss' scoped src='./style.scss' />
-
 <script>
 
 	import { mapState, mapActions } from 'vuex'
