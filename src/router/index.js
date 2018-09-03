@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Dashboard from '@/pages/Dashboard/Dashboard'
 import Home from '@/pages/Home/Home'
+import Profile from '@/pages/Profile/Profile'
 
 import ImageDisplay from '@/components/ImageDisplay/ImageDisplay'
 
@@ -14,6 +15,11 @@ export default new Router({
 			path: '/',
 			name: 'Home',
 			component: Home,
+		},
+		{
+			path: '/profile/:user',
+			name: 'Profile',
+			component: Profile,
 		},
 		{
 			path: '/dashboard',
