@@ -46,6 +46,7 @@
 			...mapState({
 				loading: state => state.user.loading,
 				loggedIn: state => state.user.loggedIn,
+				hasImages: state => state.wall.images.length > 0,
 			}),
 		},
 		methods: {
@@ -61,6 +62,9 @@
 
 <template>
 	<div class='profile'>
+		<header v-show='!hasImages'>
+			No images!
+		</header>
 		<Modal v-if='showModal' ref='profile-modal'>
 			<router-view name='ProfileImageDisplay'/>
 		</Modal>
