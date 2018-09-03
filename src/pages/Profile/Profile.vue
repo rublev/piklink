@@ -5,7 +5,8 @@
 	import { mapState, mapActions } from 'vuex'
 
 	import Navigation from '@/components/Navigation/Navigation'
-	import PublicWall from '@/components/PublicWall/PublicWall'
+	import UserInfo from '@/components/UserInfo/UserInfo'
+	import Wall from '@/components/Wall/Wall'
 	import Loader from '@/components/Loader/Loader'
 	import Modal from '@/components/Modal/Modal'
 
@@ -13,7 +14,8 @@
 		name: 'profile',
 		components: {
 			Navigation,
-			PublicWall,
+			UserInfo,
+			Wall,
 			Loader,
 			Modal,
 		},
@@ -22,9 +24,20 @@
 		}),
 		mounted () {
 			this.showModal = this.$route.meta.showModal
-			const username = `${this.$route.params.user}.id.blockstack`
+			const { blockstack, loggedIn } = this
+			const username = this.$route.params.user
 			const { imageId } = this.$route.params
-			this.setupPublicUser({ username, imageId })
+			if (!loggedIn) {
+				this.getPublicProfile(username)
+				if (blockstack.isSignInPending()) {
+					blockstack.handlePendingSignIn().then(data => {
+						this.$router.push('/')
+					})
+				} else if (blockstack.isUserSignedIn()) {
+					this.setupUser(this.$route.params.id)
+				}
+				this.setupPublicUser({ username, imageId })
+			}
 		},
 		watch: {
 			'$route.meta'({ showModal }) {
@@ -34,11 +47,14 @@
 		computed: {
 			...mapState({
 				loading: state => state.user.loading,
+				loggedIn: state => state.user.loggedIn,
 			}),
 		},
 		methods: {
 			...mapActions({
 				setupPublicUser: 'public/setupPublicUser',
+				setupUser: 'user/setupUser',
+				getPublicProfile: 'public/getPublicProfile',
 			}),
 		}
 	}
@@ -47,13 +63,14 @@
 
 <template>
 	<div class='profile'>
-		<Modal v-if='showModal' ref='modal'>
+		<Modal v-if='showModal' ref='profile-modal'>
 			<router-view name='ProfileImageDisplay'/>
 		</Modal>
 		<transition name='fade-loader'>
 			<Loader ref='loader' v-show='loading' />
 		</transition>
 		<Navigation />
-		<PublicWall />
+		<UserInfo />
+		<Wall />
 	</div>
 </template>

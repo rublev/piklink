@@ -20,38 +20,47 @@
 			Modal,
 		},
 		data: () => ({
-			showModal: null
+			showModal: null,
+			publicUsername: null,
 		}),
-		mounted() {
+		async mounted() {
 			this.showModal = this.$route.meta.showModal
-			const blockstack = this.blockstack
-			if (blockstack.isSignInPending()) {
-				blockstack.handlePendingSignIn().then(data => {
+			const { blockstack, loggedIn } = this
+			const username = this.$route.params.user
+			const { imageId } = this.$route.params
+			if (!loggedIn) {
+				if (blockstack.isSignInPending()) {
+					blockstack.handlePendingSignIn().then(data => {
+						this.$router.push('/')
+					})
+				} else if (blockstack.isUserSignedIn()) {
+					await this.setupUser(this.$route.params.id)
+					this.setPublicUsername(this.publicUsername)
+				} else {
 					this.$router.push('/')
-				})
-			} else if (blockstack.isUserSignedIn()) {
-				this.setupUser(this.$route.params.id)
-			} else {
-				this.$router.push('/')
+				}
 			}
 		},
 		watch: {
 			'$route.meta'({ showModal }) {
 				this.showModal = showModal
+			},
+			userData() {
+				this.publicUsername = this.userData.username
 			}
 		},
 		computed: {
 			...mapState({
 				loading: state => state.user.loading,
+				userData: state => state.user.data,
+				loggedIn: state => state.user.loggedIn,
 			}),
 		},
 		methods: {
 			...mapActions({
 				setupUser: 'user/setupUser',
+				setPublicUsername: 'public/setPublicUsername',
 			}),
-			signOut () {
-				this.blockstack.signUserOut(window.location.origin)
-			},
 		}
 	}
 
@@ -59,8 +68,8 @@
 
 <template>
 	<div class='dashboard'>
-		<Modal v-if='showModal' ref='modal'>
-			<router-view name='DashBoardImageDisplay'/>
+		<Modal v-if='showModal' ref='dashboard-modal'>
+			<router-view name='DashboardImageDisplay'/>
 		</Modal>
 		<transition name='fade-loader'>
 			<Loader ref='loader' v-show='loading' />
