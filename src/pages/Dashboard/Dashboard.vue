@@ -19,16 +19,25 @@
 			Loader,
 			Modal,
 		},
+		data: () => ({
+			showModal: null
+		}),
 		mounted() {
+			this.showModal = this.$route.meta.showModal
 			const blockstack = this.blockstack
 			if (blockstack.isSignInPending()) {
 				blockstack.handlePendingSignIn().then(data => {
 					this.$router.push('/')
 				})
 			} else if (blockstack.isUserSignedIn()) {
-				this.setupUser()
+				this.setupUser(this.$route.params.id)
 			} else {
 				this.$router.push('/')
+			}
+		},
+		watch: {
+			'$route.meta'({ showModal }) {
+				this.showModal = showModal
 			}
 		},
 		computed: {
@@ -43,9 +52,6 @@
 			signOut () {
 				this.blockstack.signUserOut(window.location.origin)
 			},
-			showModal() {
-				console.log('show modal')
-			}
 		}
 	}
 
@@ -54,7 +60,7 @@
 <template>
 	<div class='dashboard'>
 		<Modal v-if='showModal' ref='modal'>
-			<router-view name='rule'/>
+			<router-view name='imageDisplay'/>
 		</Modal>
 		<transition name='fade-loader'>
 			<Loader ref='loader' v-show='loading' />
