@@ -27,8 +27,8 @@
 			const { blockstack, loggedIn } = this
 			const username = this.$route.params.user
 			const { imageId } = this.$route.params
+			this.getPublicProfile(username)
 			if (!loggedIn) {
-				this.getPublicProfile(username)
 				if (blockstack.isSignInPending()) {
 					blockstack.handlePendingSignIn().then(data => {
 						this.$router.push('/')
