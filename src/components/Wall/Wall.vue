@@ -56,7 +56,7 @@
 					})
 					// make sure image is always filling up square
 					this.$refs['item-image'].map(itemImage => {
-						itemImage.style.height = `${itemImage.clientWidth}px`
+						// itemImage.style.height = `${itemImage.clientWidth}px`
 						// if height is greater than width, scale to width
 						if (itemImage.clientHeight > itemImage.clientWidth) {
 							itemImage.style.width = '100%'
