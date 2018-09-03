@@ -1,3 +1,6 @@
+export let
+	URL_PREFIX
+
 switch(true) {
 	case (process.env.NODE_ENV === 'development'):
 	case (process.env.NODE_ENV === '"development"'):
