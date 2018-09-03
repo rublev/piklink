@@ -16,7 +16,6 @@
 				{ el: this.$refs['wall'] },
 			]
 			this.$smoothReflow(options)
-			this.matchHeights()
 			window.addEventListener('resize', this.resize)
 		},
 		updated () {
@@ -51,19 +50,17 @@
 			matchHeights() {
 				if (this.$refs['item'] != null) {
 					// make all items squares
+					let itemWidth = null
 					this.$refs['item'].map(item => {
-						item.style.height = `${item.clientWidth}px`
+						itemWidth = `${item.clientWidth}px`
+						item.style.height = itemWidth
 					})
 					// make sure image is always filling up square
 					this.$refs['item-image'].map(itemImage => {
-						// itemImage.style.height = `${itemImage.clientWidth}px`
-						// if height is greater than width, scale to width
 						if (itemImage.clientHeight > itemImage.clientWidth) {
-							itemImage.style.width = '100%'
-							itemImage.style.height = 'auto'
+							itemImage.style.width = itemWidth
 						} else {
-							itemImage.style.width = 'auto'
-							itemImage.style.height = '100%'
+							itemImage.style.height = itemWidth
 						}
 					})
 				}
