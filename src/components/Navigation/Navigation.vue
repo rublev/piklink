@@ -20,6 +20,7 @@
 				'name': state => state.user.profile !== null ? state.user.profile.name() : null,
 				'avatarUrl': state => state.user.profile !== null ? state.user.profile.avatarUrl() : null,
 				'username': state => state.user.data !== null ? (state.user.data.username || state.user.data.identityAddress) : null,
+				'loggedIn': state => state.user.loggedIn
 			}),
 		},
 		methods: {
@@ -53,9 +54,14 @@
 					<ul v-if='showMenu' :class="{ 'show': showMenu }">
 						<svgicon name='logo/bw' class='logo-full' :original='true'></svgicon>
 						<ion-icon class='close' name='close' @click='toggleMenu()'></ion-icon>
-						<li>
+						<li v-if='loggedIn'>
 							<router-link to='/dashboard' exact @click.native='toggleMenu()'>
 								Dashboard
+							</router-link>
+						</li>
+						<li v-else-if='!loggedIn'>
+							<router-link to='/' exact @click.native='toggleMenu()'>
+								Sign In
 							</router-link>
 						</li>
 						<li class='blank'></li>
@@ -80,9 +86,14 @@
 					</ul>
 				</transition>
 				<ul>
-					<li>
+					<li v-if='loggedIn'>
 						<router-link to='/dashboard' exact>
 							Dashboard
+						</router-link>
+					</li>
+					<li v-else-if='!loggedIn'>
+						<router-link to='/' exact>
+							Sign In
 						</router-link>
 					</li>
 					<li class='blank'></li>
@@ -100,7 +111,7 @@
 							<img v-if='avatarUrl !== null' :src='avatarUrl' class='avatar'>
 							<svgicon v-if='avatarUrl === null' name='logo/head-bw' class='icon' :original='true'></svgicon>
 						</div>
-						<div class='signout'>
+						<div class='signout' v-show='loggedIn'>
 							<svgicon name='icon/signout' class='icon' :original='true' @click.native='signOut()'></svgicon>
 						</div>
 					</li>
