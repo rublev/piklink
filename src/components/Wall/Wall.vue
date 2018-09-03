@@ -28,6 +28,7 @@
 				'imagesLength': state => state.wall.images.length > 0 ? state.wall.images.length : 0,
 				'images': state => state.wall.images.length > 0 ? _.chunk(state.wall.images, 4) : [],
 				'loading': state => state.user.loading,
+				'publicUsername': state => state.public.username,
 			}),
 		},
 		methods: {
@@ -38,7 +39,7 @@
 			}),
 			showImageModal(id) {
 				this.fetchImage(id)
-				this.$router.push(`/dashboard/${id}`)
+				this.$router.push(`/profile/${this.publicUsername}/${id}`)
 			},
 			resize() {
 				if (this.$refs['item'] != null) {
