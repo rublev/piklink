@@ -38,7 +38,7 @@
 			}),
 			showImageModal(id) {
 				this.fetchImage(id)
-				this.$router.push(`dashboard/${id}`)
+				this.$router.push(`/dashboard/${id}`)
 			},
 			resize() {
 				if (this.$refs['item'] != null) {
