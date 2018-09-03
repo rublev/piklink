@@ -21,10 +21,12 @@
 </script>
 
 <template>
-	<div class='modal'>
-		<div class='inner'>
-			<button class='close-button' @click='handleClose'>x</button>
-			<slot></slot>
+	<transition name='modal-fade'>
+		<div class='modal'>
+			<div class='inner'>
+				<button class='close-button' @click='handleClose'>x</button>
+				<slot></slot>
+			</div>
 		</div>
-	</div>
+	</transition>
 </template>
