@@ -10,4 +10,8 @@ switch(true) {
 	case (process.env.NODE_ENV === '"production"'):
 		URL_PREFIX = 'https://piklink.netlify.com'
 		break
+	case (process.env.NODE_ENV === 'staging'):
+	case (process.env.NODE_ENV === '"staging"'):
+		URL_PREFIX = 'https://piklink-staging.netlify.com'
+		break
 }

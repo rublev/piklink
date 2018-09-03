@@ -7,7 +7,8 @@
   "scripts": {
     "svg": "vsvg -s ./static/svg -t ./src/svg",
     "dev": "yarn svg && webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "build": " yarn svg && node build/build.js"
+    "build": "yarn svg && node build/build.js",
+    "staging": "rm -rf node_modules && rm -rf yarn.lock && yarn install && yarn svg && node build/build.staging.js"
   },
   "dependencies": {
     "animejs": "^2.2.0",
