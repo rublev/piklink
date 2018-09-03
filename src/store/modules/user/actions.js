@@ -14,8 +14,7 @@ export const setupUser = async ({ commit, dispatch }, imageId) => {
 	commit('GET_USER_DATA_AND_PROFILE', { data, profile })
 	const images = await blockstack.getFile('index.json', { decrypt: false })
 		.then(images => {
-			console.log(JSON.parse(images) || { images: [] })
-			return JSON.parse(images) || { images: [] }
+			return JSON.parse(images) || []
 		})
 	await dispatch('wall/updateImages', images, { root: true })
 	if (imageId) dispatch('wall/fetchImage', imageId, { root: true })
