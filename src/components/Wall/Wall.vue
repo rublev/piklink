@@ -15,12 +15,19 @@
 			const options = [
 				{ el: this.$refs['wall'] },
 			]
+			this.matchHeights()
 			this.$smoothReflow(options)
 			window.addEventListener('resize', this.resize)
 		},
 		updated () {
 			// update new image height to match others
+			console.log('updated height')
 			this.matchHeights()
+		},
+		watch: {
+			images() {
+				console.log('updated images')
+			}
 		},
 		computed: {
 			...mapState({
