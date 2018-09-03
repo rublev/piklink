@@ -33,8 +33,8 @@ export const uploadImage = async ({ dispatch, rootState }, imageData) => {
 	const wall = _.cloneDeep(rootState.wall)
 	const images = [ ...wall.images, { path, created, id: uuidv4(), data: imageData } ]
 	try {
-		await blockstack.putFile(path, imageData)
-		await blockstack.putFile('index.json', JSON.stringify(images))
+		await blockstack.putFile(path, imageData, { encrypt: false })
+		await blockstack.putFile('index.json', JSON.stringify(images), { encrypt: false })
 		dispatch('wall/updateImages', images, { root: true })
 		dispatch('user/loading', false, { root: true })
 	} catch(e) {
@@ -47,7 +47,9 @@ export const resetAccountImages = async ({ dispatch }) => {
 	await delay(500)
 	await blockstack.putFile('index.json', JSON.stringify(null))
 	dispatch('cancelImage', { root: true })
-	dispatch('user/setupUser', {}, { root: true })
+	// dispatch('user/setupUser', {}, { root: true })
+	dispatch('wall/updateImages', [], { root: true })
+	dispatch('user/loading', false, { root: true })
 }
 
 export const cancelImage = ({ commit }) => {
