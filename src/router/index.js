@@ -23,7 +23,7 @@ export default new Router({
 			children: [
 				{
 					path: ':imageId',
-					name: 'ProfileImageDisplay',
+					name: 'ProfileImage',
 					components: {
 						ProfileImageDisplay: ImageDisplay
 					},
@@ -39,8 +39,8 @@ export default new Router({
 			component: Dashboard,
 			children: [
 				{
-					path: ':id',
-					name: 'DashboardImageDisplay',
+					path: ':imageId',
+					name: 'DashboardImage',
 					components: {
 						DashboardImageDisplay: ImageDisplay
 					},
