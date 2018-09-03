@@ -20,6 +20,18 @@ export default new Router({
 			path: '/profile/:user',
 			name: 'Profile',
 			component: Profile,
+			children: [
+				{
+					path: ':imageId',
+					name: 'ProfileImageDisplay',
+					components: {
+						ProfileImageDisplay: ImageDisplay
+					},
+					meta: {
+						showModal: true
+					}
+				},
+			]
 		},
 		{
 			path: '/dashboard',
@@ -28,9 +40,9 @@ export default new Router({
 			children: [
 				{
 					path: ':id',
-					name: 'ImageDisplay',
+					name: 'DashboardImageDisplay',
 					components: {
-						imageDisplay: ImageDisplay
+						DashboardImageDisplay: ImageDisplay
 					},
 					meta: {
 						showModal: true

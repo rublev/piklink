@@ -60,7 +60,7 @@
 <template>
 	<div class='dashboard'>
 		<Modal v-if='showModal' ref='modal'>
-			<router-view name='imageDisplay'/>
+			<router-view name='DashBoardImageDisplay'/>
 		</Modal>
 		<transition name='fade-loader'>
 			<Loader ref='loader' v-show='loading' />

@@ -12,7 +12,7 @@
 		},
 		methods: {
 			...mapActions({
-				fetchImage: 'wall/fetchImage',
+				fetchImage: 'wall/fetchImage', // remove ??
 			}),
 		},
 	}
