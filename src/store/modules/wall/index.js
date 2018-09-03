@@ -3,7 +3,12 @@ import mutations from './mutations'
 
 const state = {
 	images: [],
-	modalImage: null
+	modalImage: {
+		data: [],
+		id: null,
+		path: null,
+		created: null,
+	}
 }
 
 export default {

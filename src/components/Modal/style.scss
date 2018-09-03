@@ -1,36 +1,51 @@
-.modal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100vh;
-	width: 100vw;
-	background-color: fade-out(black, 0.2);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 20;
-}
+@import '~@/containers/App/styles/vars';
+@import '~@/containers/App/styles/shared/type';
+@import '~include-media';
 
-.inner {
-	background-color: white;
-	width: 800px;
-	position: relative;
-}
-
-.close-button {
-	position: absolute;
-	top: -40px;
-	right: 0;
-	border: 0;
-	height: 40px;
-	width: 40px;
-	background-color: darken(white, 5%);
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	svg {
-		width: 30px;
-		height: 30px;
+/* modal
+************************************************/
+	.modal {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		width: 100vw;
+		background-color: fade-out($white, 0.05);
+		display: flex;
+		justify-content: center;
+		z-index: 20;
+		padding: 100px 0 0;
+		> .inner {
+			position: relative;
+			// z-index: 1;
+			> .blank {
+				position: absolute;
+				top: -25px;
+				// bottom: 30px;
+				right: 30px;
+				height: 25px;
+				line-height: 25px;
+				padding: 0;
+				// font-size: 26px;
+				// width: 26px;
+				// height: 26px;
+				// padding: 0;
+				// line-height: 26px;
+				// z-index: 45;
+				> .close {
+					// height: auto;
+					// margin: 0;
+				}
+			}
+		}
 	}
-}
+
+	@include media('>900px') {
+		.modal {
+			> .inner {
+				> .blank {
+					// top: -25px;
+				}
+			}
+		}
+	}

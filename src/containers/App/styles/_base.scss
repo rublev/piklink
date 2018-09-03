@@ -93,6 +93,10 @@ on 10px sizing. so basically 1.5rem = 15px
 		@extend %semibold;
 	}
 
+	.icon-inner {
+		display: block;
+	}
+
 /* lists
 ************************************************/
 	ul {
