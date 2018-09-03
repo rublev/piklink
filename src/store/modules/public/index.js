@@ -2,10 +2,9 @@ import actions from './actions'
 import mutations from './mutations'
 
 const state = {
-	// image: null,
-	// imageName: null,
-	// drag: false,
-	// images:
+	username: null,
+	name: null,
+	avatar: null,
 }
 
 export default {
