@@ -5,7 +5,6 @@
 	import { mapState, mapActions } from 'vuex'
 
 	import Navigation from '@/components/Navigation/Navigation'
-	import UserInfo from '@/components/UserInfo/UserInfo'
 	import Wall from '@/components/Wall/Wall'
 	import Loader from '@/components/Loader/Loader'
 	import Modal from '@/components/Modal/Modal'
@@ -14,7 +13,6 @@
 		name: 'profile',
 		components: {
 			Navigation,
-			UserInfo,
 			Wall,
 			Loader,
 			Modal,
@@ -70,7 +68,6 @@
 			<Loader ref='loader' v-show='loading' />
 		</transition>
 		<Navigation />
-		<UserInfo />
 		<Wall />
 	</div>
 </template>
