@@ -1,14 +1,8 @@
 # piklink
 
-> A Vue.js project
-
 ## Demo
 
-[Demo URL](https://piklink.netlify.com)
-
-[Demo Video](https://streamable.com/x4ur9)
-
-[![Demo Vid](https://i.imgur.com/edZklNv.png)](https://streamable.com/x4ur9)
+https://github.com/user-attachments/assets/95e31b79-153b-4b3e-8db3-63c8458db2a1
 
 ## Build Setup
 
